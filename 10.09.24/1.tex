@@ -1,0 +1,115 @@
+\documentclass{article}
+
+\usepackage{../definition}
+\usepackage{../theorem}
+\usepackage{../preamble}
+
+\title{Лекция 1}
+\author{}
+\date{10 сентября 2024}
+
+\begin{document}
+    \maketitle
+    \section{Общие определения}
+    \begin{definition}
+        Бинарным отношением в множестве \(E\) называется всякое подмножество \(B \subseteq E \times E\).  
+    \end{definition}
+    \begin{definition}
+        Бинарное отношение \(\Re\) называется отношением эквивалентности в множестве \(E\),
+        если \(\Re\)
+        \begin{enumerate}
+            \item рефлексивно (\(\forall a \in E\  (a, a) \in \Re \)). 
+            \item симметрично (\((a, b) \in \Re \implies (b, a) \in \Re \)). 
+            \item транзитивно (\((a, b) \in \Re \land (b, c) \in \Re \implies (a, c) \in \Re \)).
+        \end{enumerate}  
+    \end{definition}
+    \noindent
+    \underline{Замечание}: вместо \((a, b) \in \Re\) в зависимости от типа множества \(E\) могут писать \(a \sim b\) или \(a = b\). 
+    \begin{definition}
+        Бинарное отношение \(\Omega\) называется отношением порядка в множестве \(E\),
+        если \(\Omega \)
+        \begin{enumerate}
+            \item рефлексивно (\(\forall a \in E\  (a, a) \in \Omega \)). 
+            \item антисимметрично (\((a, b) \in \Omega \land (b, a) \in \Omega \implies a = b\)). 
+            \item транзитивно (\((a, b) \in \Omega \land (b, c) \in \Omega \implies (a, c) \in \Omega \)).
+        \end{enumerate}   
+    \end{definition}
+    \noindent
+    \underline{Замечание 1}: говорят, что отношение \(\Omega \) упорядочивает \(E\).\\
+    \underline{Замечание 2}: запись \((a, b) \in \Omega \) эквивалентна записи \(a \leq b\).\\  
+    \underline{Замечание 3}: если \(\forall a, b \in E\) выполняется
+    \(\left[ 
+        \begin{gathered}
+            (a, b) \in \Omega \\ 
+            (b, a) \in \Omega \\
+        \end{gathered}
+    \right.\)
+    , то говорят, что множество \(E\) вполне упорядочено.
+    \begin{definition}
+        Внутренней бинарной операцией на \(E\) называют отображение \(f: E \times E \to E\).
+    \end{definition}
+    \begin{definition}
+        Множество \(E\), снаряженное внутренней бинарной операцией \(\circ\), называется группой, если
+        \begin{enumerate}
+            \item операция \(\circ\) ассоциотивна (\(a \circ (b \circ c) = (a \circ b) \circ c\)).
+            \item существует нейтральный элемент (\(\exists e \in E: \forall a \in E\ e \circ a = a\)).
+            \item для каждого элемента существует симметричный ему элемент (\(\forall a \in E\ \exists \overline{a} \in E : a \circ \overline{a} = e \)).
+        \end{enumerate}  
+    \end{definition}
+    \noindent
+    \underline{Замечание 1}: если операция \(\circ\) коммутативна (\(\forall a, b \in E\ a \circ b = b \circ a\)), то группу называют коммутативной или абелевой.\\
+    \underline{Замечание 2}: если операция \(\circ\) -- это сложение, то группу называют аддитивной; если умножение, то мультипликативной. 
+    \section{Аксиомы действительных чисел}
+    \begin{definition}
+        Множество \(\mathbb{R}\) любой природы называется полем действительных чисел, если для его элементов выполнен следующий комплекс условий:
+        \begin{enumerate}
+            \item Аксиомы сложения.
+            \begin{enumerate}[label=$\arabic*_{+}$]
+                \item Определена внутренняя бинарная операция \(+: \mathbb{R} \times \mathbb{R} \to \mathbb{R}\).
+                \item Операция \(+\) ассоциотивна \(\forall a, b, c \in \mathbb{R}\ (a + b) + c = a + (b + c)\).
+                \item Существует 0 (нейтральный элемент) (\(\exists 0 \in \mathbb{R}: \forall a \in \mathbb{R}\ 0 + a = a + 0 = a\)).
+                \item Для каждого элемента существует противоположный ему элемент (\(\forall a \in \mathbb{R}\ \exists (-a) \in \mathbb{R}: a + (-a) = (-a) + a = 0\)).
+                \item Операция \(+\) коммутативна (\(\forall a, b \in \mathbb{R}\ a + b = b + a\)). 
+            \end{enumerate}
+            \item Аксиомы умножения.
+            \begin{enumerate}[label=$\arabic*_{\dt}$]
+                \item Определена внутренняя бинарная операция \(\dt: \mathbb{R} \times \mathbb{R} \to \mathbb{R} \).
+                \item Операция \(\dt\) ассоциотивна \(\forall a, b, c \in \mathbb{R}\ (a \dt b) \dt c = a \dt (b \dt c)\).
+                \item Существует 1 (нейтральный элемент) (\(\exists 1 \in \mathbb{R}: \forall a \in \mathbb{R}\ 1 \dt a = a \dt 1 = a\)).
+                \item Для каждого элемента существует противоположный ему элемент (\(\forall a \in \mathbb{R}\ \exists a^{-1} \in \mathbb{R}: a \dt a^{-1} = a^{-1} \dt a = 1\)).
+                \item Операция \(\dt\) коммутативна (\(\forall a, b \in \mathbb{R}\ a \dt b = b \dt a\)).
+            \end{enumerate}
+            \item Операция умножения дистрибутивна относительно операции сложения (\(\forall a, b, c \in \mathbb{R}\ a \dt (b + c) = a \dt b + a \dt c\)).
+            \item Аксиомы порядка. 
+            \begin{enumerate}[label=$\arabic*_{\leq}$]
+                \item Между элементами \(\mathbb{R}\) есть отношение порядка \(\leq\), то есть \(\forall x, y \in \mathbb{R}\) либо выполнено \(x \leq y\), либо нет.
+                \item \(\forall x \in \mathbb{R}\ x \leq x\). 
+                \item \((x \leq y) \land (y \leq x) \implies y = x\).
+                \item \((x \leq y) \land (y \leq z) \implies x \leq z\).
+                \item \(\forall x, y \in \mathbb{R} \implies \) 
+                \(\left[ 
+                    \begin{gathered}
+                        x \leq y\\
+                        y \leq x\\
+                    \end{gathered}
+                \right.\)   
+            \end{enumerate}
+            \item Связь сложения и порядка: если \(x, y, z \in \mathbb{R}\) и \(x \leq y\), то \(x + z \leq y + z\).
+            \item Свзяь умножения и порядка: если \(x, y \in \mathbb{R}\) и \(x \geq 0 \land y \geq 0\), то \(x \dt y \geq 0\).      
+            \item Аксиома полноты: если \(X\) и \(Y\) -- непустые подмножества \(\mathbb{R}\), причем \(\forall x \in X,\ \forall y \in Y\ x \leq y\), то \(\exists c \in \mathbb{R}: x \leq c \leq y\).     
+        \end{enumerate}
+    \end{definition}
+    \noindent
+    \underline{Замечание 1}: всякое множество, удовлетворяющее аксиомам \((1),\ (3),\ 1_{\dt},\ 2_{\dt},\ 3_{\dt},\ 4_{\dt}\), называется телом.
+    Если дополнительно выполнена аксиома \(5_{\dt}\), то множество называется числовым полем.\\
+    \underline{Замечание 2}: если для некоторого множества выполняются аксиомы \(1_{\leq},\ 2_{\leq},\ 3_{\leq}\), то говорят,
+    что это множество частично упорядочено. Если дополнительно выполнена аксиома \(4_{\leq}\), то говорят, что множество вполне упорядочено.  
+    \section{Полезная литература}
+    \begin{itemize}
+        \item Ильин-Позняк "Основы математического анализа"
+        \item Зорич "Математический анализ"
+        \item Фихтенгольц "Математический анализ"
+        \item Демидович "Сборник задач и упражнений по математическому анализу"
+        \item Бутузов, Медведев, Крутитская, Шишкин "Математический анализ в вопросах и задачах"
+    \end{itemize}
+\end{document}
