@@ -1,0 +1,21 @@
+{
+	"Basic template": {
+		"prefix": "start",
+		"body": [
+			"\\documentclass{article}",
+			"",
+			"\\usepackage{../definition}",
+			"\\usepackage{../theorem}",
+			"\\usepackage{../preamble}",
+			"",
+			"\\title{Лекция}",
+			"\\author{}",
+			"\\date{}",
+			"",
+			"\\begin{document}",
+			"\\maketitle",
+			"",
+			"\\end{document}"
+		]
+	}
+}
