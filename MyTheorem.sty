@@ -1,0 +1,153 @@
+\RequirePackage{tikz}
+\RequirePackage{amssymb}
+\RequirePackage{framed}
+
+\RequirePackage{varwidth} % see
+                      % https://tex.stackexchange.com/questions/46475/can-we-define-maximum-width-for-a-node
+\RequirePackage{ifthen} % see
+                    % http://www.latex-community.org/forum/viewtopic.php?f=5&t=5976 
+
+% Inspired from http://www.texample.net/tikz/examples/framed-tikz/
+
+\usetikzlibrary{automata,positioning,calc,decorations.pathmorphing}
+
+\pgfdeclarelayer{background}
+\pgfsetlayers{background,main}
+
+\def\thframe#1{
+\tikz{
+  \node[inner sep=1em] (A) {#1};  % Draw the text of the node
+  \begin{pgfonlayer}{background}  % Draw the shape behind
+  \draw[regular border, rounded corners=2pt] (A.north west) rectangle (A.south east);
+  \end{pgfonlayer}}}
+
+\def\thframetop#1{
+\tikz{
+  \node[inner sep=1em] (A) {#1};    % Draw the text of the node
+  \begin{pgfonlayer}{background}
+  \draw[regular border]
+        ($(A.south east) + (0,.2)$) --
+        ($(A.north east) - (-2pt,2pt)$) arc (0:90:2pt) --
+        ($(A.north west) + (2pt,0)$) arc (90:180:2pt) --
+        ($(A.south west) + (0,.2)$);
+
+  \draw[extreme border]
+        ($(A.south west) + (0,.2)$) -- ($(A.south west) - (0,.2)$);
+  \draw[extreme border]
+        ($(A.south east) + (0,.2)$) -- ($(A.south east) - (0,.2)$);
+  \end{pgfonlayer}}}
+
+\def\thframebottom#1{
+\tikz{
+  \node[inner sep=1em] (A) {#1};   % Draw the text of the node
+  \begin{pgfonlayer}{background}   
+  \draw[regular border]
+        ($(A.north west) - (0,.2)$) --
+        ($(A.south west) + (0,2pt)$) arc (180:270:2pt) --
+        ($(A.south east) - (2pt,0)$) arc (270:360:2pt) --
+        ($(A.north east) - (0,.2)$);
+  
+  \draw[extreme border]
+        ($(A.north west) + (0,.2)$) -- ($(A.north west) - (0,.2)$);
+  \draw[extreme border]
+        ($(A.north east) + (0,.2)$) -- ($(A.north east) - (0,.2)$);
+  \end{pgfonlayer}}}
+
+\def\thframemiddle#1{
+\tikz{
+  \node[inner sep=1em] (A) {#1};   % Draw the text of the node
+  \begin{pgfonlayer}{background}
+  \draw[extreme border]
+        ($(A.north west) + (0,.2)$) -- ($(A.north west) - (0,.2)$);
+  \draw[extreme border]
+        ($(A.north east) + (0,.2)$) -- ($(A.north east) - (0,.2)$);
+  \draw[extreme border]
+        ($(A.south west) + (0,.2)$) -- ($(A.south west) - (0,.2)$);
+  \draw[extreme border]
+        ($(A.south east) + (0,.2)$) -- ($(A.south east) - (0,.2)$);
+  \draw[regular border]
+        ($(A.north west) - (0,.2)$) -- ($(A.south west) + (0,.2)$);
+  \draw[regular border]
+        ($(A.north east) - (0,.2)$) -- ($(A.south east) + (0,.2)$);
+  \end{pgfonlayer}}}
+
+\newcounter{theorem}
+\newcounter{lemma}
+\newcounter{claim}
+
+\newcommand{\newtheo}[2]{
+  \newenvironment{#1}[1][]{%
+    \tikzset{
+      normal border/.style={draw=black, fill=white, thin},
+      extreme border/.style={black!30, dash pattern=on 1pt off 1pt},
+      regular border/.style={black!30}}
+    \stepcounter{theorem}%
+    \vspace\baselineskip%
+    \def\FrameCommand{\thframe}%
+    \def\FirstFrameCommand{\thframetop}%
+    \def\LastFrameCommand{\thframebottom}%
+    \def\MidFrameCommand{\thframemiddle}%
+    \MakeFramed{\FrameRestore}
+    \noindent\tikz\node[inner sep=1ex, draw=black!30,fill=white, 
+    anchor=west, overlay, rounded corners=1pt] at (0em, 1em)
+    {\begin{varwidth}{\textwidth}
+        \textbf{\ifthenelse{\equal{##1}{}}{#2 \thetheorem}{#2
+            \thetheorem\ -- ##1}}
+      \end{varwidth}
+    };\par\noindent
+  }%
+  {\endMakeFramed}
+}
+
+\newcommand{\newlemma}[2]{
+  \newenvironment{#1}[1][]{%
+    \tikzset{
+      normal border/.style={draw=black, fill=white, thin},
+      extreme border/.style={black!30, dash pattern=on 1pt off 1pt},
+      regular border/.style={black!30}}
+    \stepcounter{lemma}%
+    \vspace\baselineskip%
+    \def\FrameCommand{\thframe}%
+    \def\FirstFrameCommand{\thframetop}%
+    \def\LastFrameCommand{\thframebottom}%
+    \def\MidFrameCommand{\thframemiddle}%
+    \MakeFramed{\FrameRestore}
+    \noindent\tikz\node[inner sep=1ex, draw=black!30,fill=white, 
+    anchor=west, overlay, rounded corners=1pt] at (0em, 1em)
+    {\begin{varwidth}{\textwidth}
+        \textbf{\ifthenelse{\equal{##1}{}}{#2 \thetheorem}{#2
+            \thetheorem\ -- ##1}}
+      \end{varwidth}
+    };\par\noindent
+  }%
+  {\endMakeFramed}
+}
+
+\newcommand{\newclaim}[2]{
+  \newenvironment{#1}[1][]{%
+    \tikzset{
+      normal border/.style={draw=black, fill=white, thin},
+      extreme border/.style={black!30, dash pattern=on 1pt off 1pt},
+      regular border/.style={black!30}}
+    \stepcounter{claim}%
+    \vspace\baselineskip%
+    \def\FrameCommand{\thframe}%
+    \def\FirstFrameCommand{\thframetop}%
+    \def\LastFrameCommand{\thframebottom}%
+    \def\MidFrameCommand{\thframemiddle}%
+    \MakeFramed{\FrameRestore}
+    \noindent\tikz\node[inner sep=1ex, draw=black!30,fill=white, 
+    anchor=west, overlay, rounded corners=1pt] at (0em, 1em)
+    {\begin{varwidth}{\textwidth}
+        \textbf{\ifthenelse{\equal{##1}{}}{#2 \thetheorem}{#2
+            \thetheorem\ -- ##1}}
+      \end{varwidth}
+    };\par\noindent
+  }%
+  {\endMakeFramed}
+}
+
+
+\newtheo{theorem}{Теорема}
+\newclaim{claim}{Утверждение}
+\newlemma{lemma}{Лемма}

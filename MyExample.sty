@@ -1,0 +1,175 @@
+\RequirePackage{tikz}
+\RequirePackage{amssymb}
+\RequirePackage{framed}
+
+\RequirePackage{varwidth} % see
+                      % https://tex.stackexchange.com/questions/46475/can-we-define-maximum-width-for-a-node
+
+
+\newcounter{misc}[part]
+
+% Inspired from http://www.texample.net/tikz/examples/framed-tikz/
+
+\usetikzlibrary{automata,positioning,calc,decorations.pathmorphing}
+
+\pgfdeclarelayer{background}
+\pgfsetlayers{background,main}
+
+\def\parchmentframe#1{
+\tikz{
+  \node[inner sep=1em] (A) {#1};  % Draw the text of the node
+  \begin{pgfonlayer}{background}  % Draw the shape behind
+  \fill[normal border, rounded corners=2pt] 
+        (A.north east) rectangle (A.south west);
+  \draw[regular border]
+        ($(A.north west) + (1em,0)$) --
+        ($(A.north west) + (2pt,0)$) arc (90:180:2pt) --
+        ($(A.south west) + (0,2pt)$) arc (180:270:2pt) --
+        ($(A.south west) + (1em,0)$);
+  \end{pgfonlayer}}}
+
+\def\parchmentframetop#1{
+\tikz{
+  \node[inner sep=1em] (A) {#1};    % Draw the text of the node
+  \begin{pgfonlayer}{background}    
+  \draw[regular border]
+        ($(A.north west) + (1em,0)$) --
+        ($(A.north west) + (2pt,0)$) arc (90:180:2pt) --
+        ($(A.south west) + (0,.2)$) ;
+  \fill[normal border] 
+        ($(A.south east) + (0,.2)$) --
+        ($(A.north east) - (0,2pt)$) arc (0:90:2pt) --
+        ($(A.north west) + (2pt,0)$) arc (90:180:2pt) --
+        ($(A.south west) + (0,.2)$);
+  \fill[torn border]                % Add the torn lower border
+        ($(A.south east)-(0,.2)$) -- ($(A.south west)-(0,.2)$) -- 
+        ($(A.south west)+(0,.2)$) -- ($(A.south east)+(0,.2)$) --
+        cycle;
+  \draw[extreme border]
+        ($(A.south west)+(0,0.5em)$) --
+        ($(A.south west)-(0,0.5em)$);
+
+  \end{pgfonlayer}}}
+
+\def\parchmentframebottom#1{
+\tikz{
+  \node[inner sep=1em] (A) {#1};   % Draw the text of the node
+  \begin{pgfonlayer}{background}   
+  \fill[normal border]             % Draw the ``complete shape'' behind
+        (A.north west) -- 
+        ($(A.south west) + (0,2pt)$) arc (180:270:2pt) --
+        ($(A.south east) - (2pt,0)$) arc (270:360:2pt) --
+        (A.north east);
+  \fill[torn border]               % Add the torn upper border
+        ($(A.north east)-(0,.5em)$) -- ($(A.north west)-(0,.5em)$) -- 
+        ($(A.north west)+(0,.5em)$) -- ($(A.north east)+(0,.5em)$) --
+        cycle;
+  \draw [extreme border]
+        ($(A.north west)+(0,0.5em)$) -- ($(A.north west)-(0,0.5em)$);
+  \draw [regular border]
+        ($(A.north west)-(0,0.5em)$) --
+        ($(A.south west) + (0,2pt)$) arc (180:270:2pt) --
+        ($(A.south west) + (1.em,0)$);
+  \end{pgfonlayer}}}
+
+\def\parchmentframemiddle#1{
+\tikz{
+  \node[inner sep=1em] (A) {#1};   % Draw the text of the node
+  \begin{pgfonlayer}{background}   
+  \fill[normal border]             % Draw the ``complete shape'' behind
+        (A.south east) -- (A.south west) -- 
+        (A.north west) -- (A.north east) -- cycle;
+  \fill[torn border]               % Add the torn lower border
+        ($(A.south east)-(0,.5em)$) -- ($(A.south west)-(0,.5em)$) -- 
+        ($(A.south west)+(0,.5em)$) -- ($(A.south east)+(0,.5em)$) -- cycle;
+  \fill[torn border]               % Add the torn upper border
+        ($(A.north east)-(0,.5em)$) -- ($(A.north west)-(0,.5em)$) -- 
+        ($(A.north west)+(0,.5em)$) -- ($(A.north east)+(0,.5em)$) --
+        cycle;
+  \draw[extreme border]
+        ($(A.north west)-(0,.5em)$) -- ($(A.north west)+(0,.5em)$);
+  \draw[regular border]
+        ($(A.north west)-(0,.5em)$) -- ($(A.south west)+(0,.5em)$);
+  \draw[extreme border]
+        ($(A.south west)-(0,.5em)$) -- ($(A.south west)+(0,.5em)$);
+  \end{pgfonlayer}}}
+
+\newcommand{\newcustomexample}[2]{
+
+  \newenvironment{#1}[1][]{%
+    \tikzset{
+      normal border/.style={green!30!black!5, decorate},
+      torn border/.style={green!30!black!2, decorate},
+      extreme border/.style={black!30, dash pattern=on 1pt off 1pt},
+      regular border/.style={black!30}}
+    \stepcounter{misc}%
+    \vspace\baselineskip%
+    \def\FrameCommand{\parchmentframe}%
+    \def\FirstFrameCommand{\parchmentframetop}%
+    \def\LastFrameCommand{\parchmentframebottom}%
+    \def\MidFrameCommand{\parchmentframemiddle}%
+    \MakeFramed{\FrameRestore}
+    \noindent\tikz\node[inner sep=1ex, rounded corners=1pt,draw=black!30,fill=white, 
+    anchor=west, overlay] at (0em, 1em)
+    {\begin{varwidth}{\textwidth}
+        \textbf{\ifthenelse{\equal{##1}{}}{#2 \themisc}{#2
+            \themisc\ -- ##1}}
+      \end{varwidth}
+    };\par\noindent
+  }%
+  {\endMakeFramed}
+}
+
+\newcommand{\newcustomdef}[2]{
+  \newenvironment{#1}[1][]{%
+    \tikzset{
+      normal border/.style={blue!30!black!5, decorate},
+      torn border/.style={blue!30!black!2, decorate},
+      extreme border/.style={black!30, dash pattern=on 1pt off 1pt},
+      regular border/.style={black!30}}
+  
+    \stepcounter{misc}%
+    \vspace\baselineskip%
+    \def\FrameCommand{\parchmentframe}%
+    \def\FirstFrameCommand{\parchmentframetop}%
+    \def\LastFrameCommand{\parchmentframebottom}%
+    \def\MidFrameCommand{\parchmentframemiddle}%
+    \MakeFramed{\FrameRestore}
+    \noindent\tikz\node[inner sep=1ex, rounded corners=1pt, draw=black!30,fill=white, 
+    anchor=west, overlay] at (0em, 1em)
+    {\begin{varwidth}{\textwidth}
+        \textbf{\ifthenelse{\equal{##1}{}}{#2 \themisc}{#2
+            \themisc\ -- ##1}}
+      \end{varwidth}
+    };\par\noindent
+  }%
+  {\endMakeFramed}
+}
+
+\newcommand{\newcustommisc}[2]{
+  \newenvironment{#1}[1][]{%
+    \tikzset{
+      normal border/.style={black!30!black!5, decorate},
+      torn border/.style={black!30!black!2, decorate},
+      extreme border/.style={black!30, dash pattern=on 1pt off 1pt},
+      regular border/.style={black!30}}
+
+    \stepcounter{misc}%
+    \vspace\baselineskip%
+    \def\FrameCommand{\parchmentframe}%
+    \def\FirstFrameCommand{\parchmentframetop}%
+    \def\LastFrameCommand{\parchmentframebottom}%
+    \def\MidFrameCommand{\parchmentframemiddle}%
+    \MakeFramed{\FrameRestore}
+    \noindent\tikz\node[inner sep=1ex, rounded corners=1pt, draw=black!30,fill=white, 
+    anchor=west, overlay] at (0em, 1em)
+    {\begin{varwidth}{\textwidth}
+        \textbf{\ifthenelse{\equal{##1}{}}{#2 \themisc}{#2
+            \themisc\ -- ##1}}
+      \end{varwidth}
+    };\par\noindent
+  }%
+  {\endMakeFramed}
+}
+
+\newcustomdef{definition}{Определение}
