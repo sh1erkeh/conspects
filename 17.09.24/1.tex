@@ -1,0 +1,184 @@
+\documentclass{article}
+
+\usepackage{../definition}
+\usepackage{../theorem}
+\usepackage{../preamble}
+
+\title{Лекция 3}
+\author{}
+\date{17 сентября 2024}
+
+\begin{document}
+
+\maketitle
+\noindent
+Формула оценивания (всего 2 КР и 1 коллоквиум): 0.15(КР1) + 0.15(КР2) + 0.15(Коллоквиум) + 0.1(Активность) + 0.45(оценка за экзамен).
+\section{Модуль вещественного числа}
+    \begin{definition}[Модуль вещественного числа]
+        Если дано вещественное число \(x\), то \(|x|\) определяется следующим образом: 
+        \(|x| = 
+        \begin{cases}
+            \ \ x & \text{если}\  x > 0\\
+            \ \ 0 & \text{если}\  x = 0\\
+            -x & \text{если}\ x < 0\\
+        \end{cases}
+        \)
+    \end{definition}
+
+    \begin{definition}
+        Расстоянием между действительными числами \(x\) и \(y\) называется \(|x - y|\). 
+    \end{definition}
+    \begin{claim}
+        \(\forall x,\ y,\ z \in \mathbb{R}\) справедливо, что \(|x - y| \leq |y - z| + |z - x|\).  
+    \end{claim}
+    \noindent
+    \underline{Замечание}: равенство выполняется только когда все три числа либо неотрицательны, либо неположительны.
+    \begin{claim}
+        \(\forall x,\ y \in \mathbb{R}\) справедливо, что \(|x + y| \leq |x| + |y|\).  
+    \end{claim}
+    \noindent
+    \underline{Доказательство}.\\
+    \begin{enumerate}
+        \item 
+        \(\begin{cases}
+            0 \leq y\\
+            0 \leq x\\
+        \end{cases} \implies
+        \begin{cases}
+            |x + y| = x + y\\
+            |x| = x\\
+            |y| = y\\
+        \end{cases} \implies |x + y| = x + y = |x| + |y|\).
+        \item 
+        \(\begin{cases}
+            x \leq 0\\ 
+            y \leq  0\\
+        \end{cases} \implies 
+        \begin{cases}
+            |x + y| = -(x + y) = (-x) + (-y)\\
+            |x| = -x\\
+            |y| = -y\\
+        \end{cases} \implies |x + y| = (-x) + (-y) = |x| + |y|\).
+        \item 
+        \(\begin{cases}
+            y > 0\\
+            x < 0\\
+        \end{cases} \implies 
+        \left[
+            \begin{gathered}
+                x < x + y \leq 0 \implies |x + y| < |x|\\
+                0 \leq x + y < y \implies |x + y| < |y|\\
+            \end{gathered}
+        \right. \implies |x + y| < |x| + |y|\). 
+    \end{enumerate}
+    \underline{Замечание}: для \(n\) произвольных действительных чисел имеет место равенство \(|x_{1} + x_{2} + \dots + x_{n}| \leq |x_{1}| + |x_{2}| + \dots + |x_{n}|\) (доказывается по индукции).  
+    \section{Предел функции}
+    \begin{definition}
+        Пусть \(X\) и \(Y\) --- некоторые числовые множества. Если \(\forall x \in X \mapsto\ !y \in Y\) (то есть каждому x из X ставится в соответствие единственный y из Y), то говорят, что на множестве \(X\) определена числовая функция \(y = y(x)\).
+        \begin{itemize}
+            \item Множество \(X\) называется областью определения функции (обозначается как \(D(f)\)).
+            \item Переменная \(x\) называется аргументом функции.
+            \item Число \(y\), соответствующее данному \(x\), называется частным значением функции.
+            \item Совокупность \(\{y\}\) всех частных значений функции называется областю значений (обозначается как \(E(f)\)).
+        \end{itemize}
+    \end{definition}
+    \begin{definition}
+        График функции --- это множество вида \(\{M(x, f(x)),\ x \in X\}\) (в прямоугольной системе координат). 
+    \end{definition}
+    \noindent
+    \underline{Замечание}: \(\exists\)  функции, графики которых нельзя изобразить:
+    \(D(x) = \begin{cases}
+        1, \ \text{если}\ x \in \mathbb{Q}\\
+        0, \ \text{если}\ x \in \mathbb{I}\\ 
+    \end{cases}\) (функция Дирихле).
+    \begin{definition}
+        Функция \(f(x)\) называется ограниченной сверху (снизу) на множестве \(K\), если \(\exists M \in K\ (m \in K): \forall x \in X\ f(x) \leq M\ (f(x) \geq m)\). При этом число \(M\) называется верхней гранью (а число \(m\) --- нижней гранью) функции \(f(x)\) на множестве \(K\).      
+    \end{definition}
+    \begin{definition}[Ограниченность I]
+        Функция \(f(x)\) называется ограниченной на множестве \(K\), если \(\exists M, m \in K: \forall x \in X: m \leq f(x) \leq M\).    
+    \end{definition}
+    \begin{definition}[Ограниченность II]
+        Функция \(f(x)\) называется ограниченной на множестве \(K\), если \(\exists A \in K > 0: \forall x \in X\ |f(x)| \leq  A\).   
+    \end{definition}
+    \noindent
+    \underline{Домашнее задание:} доказать, что определение 7 эквивалентно определению 6.
+    \begin{definition}
+        Наименьшая из верхних граней, ограничивающих сверху функцию \(f(x)\), называется ее точной верхней гранью (обозначается как \(\displaystyle \sup_{X}{f(x)}\)).
+        Можно сказать, что \(\displaystyle \sup_{X}{f(x)} = \sup{\{y\}}\). 
+    \end{definition}
+    \noindent
+    \underline{Замечание:} можно дать аналогичное определение для точней нижней грани.
+    \begin{claim}
+        Число \(M = \sup_{X}{f(x)}\), если
+        \begin{enumerate}
+            \item \(\forall x \in X: f(x) \leq M\) (то есть число \(M\) --- это одна из верхних граней).
+            \item \(\forall \widetilde{M} < M\ \exists \widetilde{x} \in X: f(\widetilde{x}) > \widetilde{M}\) (то есть число \(M\) --- наименьшая из верхних граней).  
+        \end{enumerate}  
+    \end{claim}
+    \noindent
+    \underline{Домашнее задание 1:} сформулировать аналогичное определение для точной нижней грани.\\
+    \underline{Домашнее задание 2:} пользуясь правилом построения отрицаний сформулировать определение
+    \begin{enumerate}
+        \item неограниченной сверху функции.
+        \item неограниченной снизу функции.
+        \item неограниченной функции.
+    \end{enumerate}
+    \underline{Замечание:} ограниченная функция может не принимать значение, равное какой-либо её точной грани.\\
+    \textbf{Пример}: \(y = \sin{x}\). Возьмем \(D(y) = \{x : 0 < x \leq \frac{\pi}{2}\} \implies \sup\{\sin{x}\} = 1 \in \{y\}\). \(\inf\{\sin{x}\} = 0 \notin \{y\}\). 
+    \section{Определение предела функции}
+    \begin{definition}
+        Число \(A\) называется предельной точкой некоторого числового множества \(X\), если в любой (сколь угодно малой) проколотой \(\varepsilon\)-окрестности точки \(A\) содержатся точки из множества \(X\).  
+    \end{definition}   
+    \noindent
+    \textbf{Пример 1}: \(X = \{x : a < x < b\}\), любая точка такого интервала (а также точки \(a\) и \(b\)) является предельной точкой \(X\).\\
+    \textbf{Пример 2}: Множество \(\mathbb{R}\) не имеет ни одной предельной точки.\\ \\
+    Пусть функция \(y = f(x)\) определена на множестве \(X\). Пусть \(A\) --- предельная точка множества \(X\).   
+    \begin{definition}[Определение предела по Коши]
+        Число \(B\) называется пределом функции \(f(x)\) в точке \(a\) (при \(x \to a\)), если \[\forall \varepsilon > 0\ \exists \delta(\varepsilon) > 0: \forall x \in D(f): 0 < |x - a| < \delta \implies |f(x) - B| < \varepsilon\] 
+    \end{definition}
+    \noindent
+    \underline{Замечание 1}: выражение <предел функции \(f(x)\) в точке \(a\) равен \(B\)> обозначается как \(\lim\limits_{x \to a}f(x) = B\).\\
+    \underline{Замечание 2}: \(|f(x) - B| < \varepsilon \iff b - \varepsilon < f(x) < b + \varepsilon\).\\
+    \begin{claim} 
+        Функция в данной точке может иметь не более одного предела.
+    \end{claim}
+    \begin{claim} 
+        Если функция \(f(x)\) имеет в данной точке предел, то она ограничена в некоторой окрестности этой точки.
+    \end{claim}
+    \noindent
+    \underline{Доказательство}.\\
+    Следует непосредственно из определения предела.\\ \\
+    \textbf{Пример 1}: 
+    Докажем, что если \(\forall x \in \mathbb{R}\ f(x) = c = const\), то \(\forall a \in \mathbb{R} \lim\limits_{x \to a}f(x) = c\).
+    \(\forall \varepsilon > 0\) возьмем любое \(\delta > 0\), тогда \(|f(x) - c| \equiv 0 < \varepsilon\).\\ 
+    \textbf{Пример 2}: \(f(x) =
+    \begin{cases}
+        b & \text{если}\ x \neq a\\
+        c \neq b & \text{если}\ x = a\\ 
+    \end{cases} \implies \lim\limits_{x \to a}f(x) = b\).\\
+    \textbf{Пример 3}: \(f(x) = 
+    \begin{cases}
+        b & \text{если}\ x \neq a\\
+        \text{не определена} & \text{если}\ x = a\\
+    \end{cases} \implies \lim\limits_{x \to a}f(x) = b\).\\
+    \underline{Замечание 1}: во всех примерах \(\forall \varepsilon > 0\) можно взять любое \(\delta\)  (то есть \(\delta\) не зависит от \(\varepsilon\)).\\
+    \underline{Замечание 2}: если в определении предела убрать неравенство \(0 < |x - a| < \delta\), то есть потребовать выполнение неравенства \(|f(x) - B| < \varepsilon\)
+    для всех значений аргумента из \(\delta\)-окрестности точки \(a\) (включая саму точку a, при условии, что она принадлежит области определения функции), то 
+    \begin{itemize}
+        \item ответ в примере 3 не изменится, поскольку \(x = a\) не является значением аргумента функици.
+        \item ответ в примере 2 изменится. А именно, предел у функции \(f(x)\) не будет существовать, так как при \(x = a\) неравенство \(|f(x) - B| < \varepsilon\) принимает вид \(|c - b| < \varepsilon\). Данное неравенство не выполняется, если взять \(\varepsilon < |c - b|\).
+    \end{itemize}
+    \textbf{Пример 4}: докажем, что если \(f(x) = x\), то \(\forall a \in \mathbb{R} \lim\limits_{x \to a}f(x) = a\).
+    \(\forall \varepsilon > 0\ \exists \delta = \varepsilon: \forall x \in \mathbb{R}: 0 < |x - a| < \delta = \varepsilon \implies |f(x) - a| = |x - a| < \varepsilon\).\\
+    \textbf{Пример 5}: Докажем, что \(f(x) = \sin{\frac{1}{x}}\) не имеет предела в точке 0 (\(x = 0\) --- предельная точка области определения, поэтому вопрос о существовании предела является корректным).
+    \begin{enumerate}
+        \item Предположим, что \(\displaystyle \lim\limits_{x \to 0}\sin{\frac{1}{x}} = B\).
+        \item Возьмем \(\varepsilon = 1 \implies \exists \delta > 0: \left \vert \sin{\frac{1}{x}} = B \right \vert < 1\) при \(0 < |x| < \delta\).
+        \item Возьмем \(\displaystyle x_{1} = \frac{1}{\frac{\pi}{2} + 2\pi n},\ x_{2} = \frac{1}{\frac{-\pi}{2} + 2\pi n}\) (\(0 < |x_{1}|, |x_{2}| < \delta\)).
+        \item Заметим, что \(\displaystyle \left \vert \sin{\frac{1}{x_{1}}} - b \right \vert = |1 - b| < 1\), \(\displaystyle \left \vert \sin{\frac{1}{x_{2}}} - b \right \vert = |-1-b| < 1\) и система
+        \(\begin{cases}
+            |1 - b| < 1\\
+            | -1 - b| = |1 + b| < 1\\  
+        \end{cases}\) неразрешима в действительных числах \(\implies f(x) = \sin{\frac{1}{x}}\) не имеет предела в точке 0.
+    \end{enumerate}
+\end{document}
