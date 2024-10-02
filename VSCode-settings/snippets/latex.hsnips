@@ -630,8 +630,8 @@ endsnippet
 
 priority 200
 context math(context)
-snippet `(?<!\\)lim` "limit" A
-\lim_{${1:n} \to ${2:\infty}} 
+snippet lim "limit" A
+\lim\limits_{x \to } 
 endsnippet
 
 context math(context)
@@ -816,6 +816,6 @@ snippet lemma "lemma" A
 \end{lemma}
 endsnippet
 
-snippet `(\\?\w+)(u|U)l` "underline" A
-\underline{``rv = m[1]``} $0
+snippet ul "underline" A
+\underline{$1} $0
 endsnippet
