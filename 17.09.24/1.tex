@@ -172,8 +172,8 @@
     \(\forall \varepsilon > 0\ \exists \delta = \varepsilon: \forall x \in \mathbb{R}: 0 < |x - a| < \delta = \varepsilon \implies |f(x) - a| = |x - a| < \varepsilon\).\\
     \textbf{Пример 5}: Докажем, что \(f(x) = \sin{\frac{1}{x}}\) не имеет предела в точке 0 (\(x = 0\) --- предельная точка области определения, поэтому вопрос о существовании предела является корректным).
     \begin{enumerate}
-        \item Предположим, что \(\displaystyle \lim\limits_{x \to 0}\sin{\frac{1}{x}} = B\).
-        \item Возьмем \(\varepsilon = 1 \implies \exists \delta > 0: \left \vert \sin{\frac{1}{x}} = B \right \vert < 1\) при \(0 < |x| < \delta\).
+        \item Предположим, что \(\displaystyle \lim\limits_{x \to 0}\sin{\frac{1}{x}} = b\).
+        \item Возьмем \(\varepsilon = 1 \implies \exists \delta > 0: \left \vert \sin{\frac{1}{x}} - b \right \vert < 1\) при \(0 < |x| < \delta\).
         \item Возьмем \(\displaystyle x_{1} = \frac{1}{\frac{\pi}{2} + 2\pi n},\ x_{2} = \frac{1}{\frac{-\pi}{2} + 2\pi n}\) (\(0 < |x_{1}|, |x_{2}| < \delta\)).
         \item Заметим, что \(\displaystyle \left \vert \sin{\frac{1}{x_{1}}} - b \right \vert = |1 - b| < 1\), \(\displaystyle \left \vert \sin{\frac{1}{x_{2}}} - b \right \vert = |-1-b| < 1\) и система
         \(\begin{cases}
