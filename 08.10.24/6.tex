@@ -1,0 +1,118 @@
+\documentclass{article}
+
+\usepackage{../definition}
+\usepackage{../theorem}
+\usepackage{../preamble}
+
+\title{Лекция 6}
+\author{}
+\date{8 октября 2024}
+
+\begin{document}
+\maketitle
+
+\begin{theorem}[Об арифметических свойствах пределов]
+    Пусть \(f(x)\) и \(g(x)\) определены в проколотой окрестности точки \(a\). Пусть \(\exists \lim\limits_{x \to a}f(x) = b\), \(\exists \lim\limits_{x \to a}g(x) = c\).
+    \begin{enumerate}
+        \item \(\exists \lim\limits_{x \to a}(f(x) \pm g(x)) = b \pm c\).
+        \item \(\exists \lim\limits_{x \to a}(f(x) \cdot g(x)) = b \cdot c\).
+        \item Если \(c \neq 0\), то в некоторой проколотой окрестности точки \(a\) определена функция \(\displaystyle \frac{f(x)}{g(x)}\), причем \(\displaystyle \lim\limits_{x \to a} \frac{f(x)}{g(x)} = \frac{\lim\limits_{x \to a}f(x)}{\lim\limits_{x \to a}g(x)}\).      
+    \end{enumerate}     
+\end{theorem}
+\noindent
+\underline{Доказательство пункта 1.}
+\begin{enumerate}
+    \item В силу леммы 1, \(f(x) = b + \alpha(x)\), \(g(x) = c + \beta(x)\), где \(\alpha(x)\) и \(\beta (x)\) --- бесконечно малые функции в точке \(a\).
+    \item Тогда \(f(x) \pm g(x) = b \pm c + (\alpha(x) \pm \beta(x)) = b \pm c + \gamma(x)\), где \(\gamma(x)\) --- бесконечно малая в силу теоремы 2 функция.
+    \item Согласно лемме 2: \(\lim\limits_{x \to a}(f(x) \pm g(x)) = b \pm c\).
+\end{enumerate}
+\noindent 
+\underline{Доказательство пункта 3.}
+\begin{enumerate}
+    \item Без ограничения общности положим \(c > 0\).
+    \item Возьмем \(\displaystyle \varepsilon = \frac{c}{2}\). По определению предела: \(\exists \delta(\varepsilon) > 0 : \forall x \in \{0 < \vert x - a \vert < \delta\} \implies \vert g(x) - c \vert < \varepsilon\).
+    \item \(\displaystyle c - \varepsilon < g(x) < c + \varepsilon \iff \frac{c}{2} < g(x) < \frac{3c}{2} \implies g(x) \neq 0\) в проколотой \(\delta\)-окрестности точки \(a \implies \) в этой проколотой \(\delta\)-окрестности определена функция \(\displaystyle \frac{f(x)}{g(x)}\).
+    \item Используя равенства \(f(x) = b + \alpha(x)\), \(g(x) = c + \beta(x)\), получим \(\displaystyle \frac{f(x)}{g(x)} - \frac{b}{c} = \left(\frac{b + \alpha(x)}{c + \beta(x)}\right) - \frac{b}{c} = \frac{\gamma(x)}{c \cdot g(x)}\), где \(\gamma(x)\) --- бесконечно малая функция.
+    \item Функция \(\displaystyle \frac{1}{c \cdot g(x)}\) ограничена в проколотой \(\delta\)-окрестности точки \(a\). \(\displaystyle g(x) > \frac{c}{2} \implies \frac{1}{c \cdot g(x)} \in \left(0, \frac{2}{c^2}\right) \implies \frac{f(x)}{g(x)} - \frac{b}{c} = \xi(x)\) (бесконечно малая).
+    \item В силу леммы 2: \(\displaystyle \lim\limits_{x \to a}\frac{f(x)}{g(x)} = \frac{b}{c}\).    
+\end{enumerate} 
+\noindent
+\underline{Замечание:} теорема 1 справедлива также и для односторонних пределов и пределов при \(x \to \infty\) (в частности она справедлива и для числовых последовательностей).\\
+\begin{claim}
+    \(\lim\limits_{x \to a}(c \cdot f(x)) = c \cdot \lim\limits_{x \to a}f(x)\).
+\end{claim}
+
+\begin{definition}
+    Пусть \(P_{n}(x)\) и \(Q_{m}(x)\) --- алгебраические многочлены степеней \(n\) и \(m\) соответственно. Тогда \(\displaystyle f(x) = \frac{P_{n}(x)}{Q_{m}(x)}\) называется рациональной функцией или дробью.  
+\end{definition}
+
+\begin{claim}
+    Если \(Q_{m}(x)\) в точке \(a\) отличен от нуля, то \(\displaystyle \lim\limits_{x \to a}f(x) = \frac{P_{n}(a)}{Q_{m}(a)}\).   
+\end{claim}
+
+\begin{theorem}[О предельном переходе в неравенствах]
+    Если в некоторой проколотой окрестности точки \(a\) выполянется неравенство \(f(x) \geq c\) (\(f(x) \leq c\)), и при этом существует предел \(\lim\limits_{x \to a}f(x) = b\), то \(b \geq c\) (\(b \leq c\)).    
+\end{theorem}
+\noindent 
+\underline{Доказательство.}
+\begin{enumerate}
+    \item Предположим противное: \(b < c\).
+    \item Возьмем \(\varepsilon > 0\) столь малым, что \(b + \varepsilon < c\).
+    \item По определению предела: \(\exists \delta(\varepsilon) > 0: \forall x \in \{0 < \vert x - a \vert < \delta\} \implies \vert f(x) - b \vert < \varepsilon \iff b - \varepsilon < f(x) < b + \varepsilon\).
+    \item Тем самым в некоторой проколотой \(\delta\)-окрестности точки \(a\) одновременно \(f(x) \geq c\) и \(f(x) < b + \varepsilon < c\). Получено противоречие.   
+\end{enumerate}
+\noindent
+\underline{Замечание:} теорема 2 справедлива также для односторонних пределов и пределов при \(x \to \infty\) (в частности она справедлива и для числовых последовательстей). 
+
+\begin{theorem}[О пределе последовательности]
+    Если \(\forall n \in \mathbb{N}: c \leq x_{n} \leq b\) и \(\exists \lim\limits_{n \to \infty}x_{n} = a\), то \(c \leq a \leq b\).   
+\end{theorem}
+\noindent
+\underline{Замечание:} из условия \(f(x) > c\) не следует, что \(\lim\limits_{x \to a}f(x) > c\).\\
+\textbf{Пример.} \(\displaystyle f(x) = \frac{1}{x} > 0\) при \(x \to 0\), но \(\lim\limits_{x \to \infty}f(x) = 0\).
+
+\begin{theorem}[О двух милиционерах]
+    Если в проколотой окрестности точки \(a\) выполняются неравенства \(f(x) \leq g(x) \leq h(x)\) и \(\exists \lim\limits_{x \to a}f(x) = \lim\limits_{x \to a}h(x) = c\),
+    то \(\exists \lim\limits_{x \to a}g(x) = b\).    
+\end{theorem}
+\noindent
+\underline{Доказательство.}
+\begin{enumerate}
+    \item Зададим произвольное \(\varepsilon > 0\).
+    \item По определению предела: \(\exists \delta(\varepsilon) > 0: \forall x \in \{0 < \vert x - a \vert < \delta\} \implies \vert f(x) - b \vert < \varepsilon\) и \(\vert h(x) - b \vert < \epsilon\). 
+    \item \(f(x) \leq g(x) \leq h(x) \iff f(x) - b \leq g(x) - b \leq h(x) - b \implies \vert g(x) - b \vert < \varepsilon\) при \(x \in \{0 < \vert x - a \vert < \delta\} \implies \lim\limits_{x \to a}g(x) = b\). 
+\end{enumerate}
+\noindent
+\underline{Замечание:} теорема справедлива для односторонних пределов, пределов при \(x \to \infty\) и числовых последовательностей.
+
+\section{Предел монотонной функции}
+\begin{definition}
+    Функця \(f(x)\) называется
+    \begin{itemize}
+        \item[$\left(\text{а}\right)$] возрастающей, если \(\forall x_{1}, x_{2} \in D(f): x_{1} <  x_{2} \implies f(x_{1}) < f(x_{2})\).
+        \item[$\left(\text{б}\right)$] убывающей, если \(\forall x_{1}, x_{2} \in D(f): x_{1} <  x_{2} \implies f(x_{1}) > f(x_{2})\). 
+        \item[$\left(\text{в}\right)$] невозрастающей, если \(\forall x_{1}, x_{2} \in D(f): x_{1} <  x_{2} \implies f(x_{1}) \geq f(x_{2})\). 
+        \item[$\left(\text{г}\right)$] неубывающей, если \(\forall x_{1}, x_{2} \in D(f): x_{1} <  x_{2} \implies f(x_{1}) \leq f(x_{2})\). 
+    \end{itemize}
+\end{definition}
+\noindent
+\underline{Замечание:} функции (в) и (г) называеюся монотонными; (а) и (б) --- строго монотонными.\\[0.1cm]
+\textbf{Пример 1.} \(f(x) = x^2\) строго монотонная на \({[0, +\infty)}\).\\
+\textbf{Пример 2.} \(f(x) = \left[x\right]\) не убывает на \(\mathbb{R}\).
+
+\begin{theorem}[Обобщение теоремы Вейерштрасса]
+    Если функция \(f(x)\) монотонна и ограничена на \(x \geq a\), то \(\exists \lim\limits_{x \to +\infty}f(x)\).  
+\end{theorem}
+\noindent
+\underline{Доказательство.}\\[0.1cm]
+Без ограничения общности рассмотрим случай, когда \(f(x)\) не убывает на \({[a, +\infty)}\) и ограничена сверху на этом множестве.
+Область значений такой функции представляет собой ограниченное (сверху) числовое множество \(\displaystyle \implies \exists \sup_{x \in [a, +\infty)}f(x) = b\).
+\begin{enumerate}
+    \item Зададим произвольное \(\varepsilon >0\). Рассмотрим число \(b - \varepsilon\).
+    \item По определению супремума: \(\exists A \in [a, +\infty): f(A) > b - \varepsilon\).
+    \item Так как \(f(x)\) не убывает, то \(f(x) \geq f(A)\) при \(x > A \implies f(x) > b - \varepsilon\) при \(x > A\).
+    \item Получаем, что \(b - f(x) < \varepsilon\) при \(x > A\) или \(\vert f(x) - b \vert < \varepsilon\) при \(x > A \implies \lim\limits_{x \to +\infty}f(x) = b\).          
+\end{enumerate}
+\noindent
+\underline{Замечание:} теорема справедлива для односторонних пределов.
+\end{document}

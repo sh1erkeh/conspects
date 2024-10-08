@@ -15,16 +15,16 @@
     Сумма и разность двух бесконечно малых функций --- это бесконечно малая функция.
 \end{theorem}
 \noindent
-\underline{Доказательство.}\\
-Пусть \(f(x)\) и \(g(x)\) --- бесконечно малы при \(x \to a\). Тогда
+\underline{Доказательство.}\\[0.1cm]
+Пусть \(f(x)\) и \(g(x)\) бесконечно малы при \(x \to a\). Тогда
 \begin{enumerate}
     \item \(\displaystyle \forall \varepsilon > 0\ \exists \delta_{1} > 0 : \forall x \in 0 < \vert x - a \vert < \delta_{1}: \vert f(x) \vert < \frac{\varepsilon}{2}\). 
     \item \(\displaystyle \forall \varepsilon > 0\ \exists \delta_{2} > 0 : \forall x \in 0 < \vert x - a \vert < \delta_{2}: \vert g(x) \vert < \frac{\varepsilon}{2}\). 
 \end{enumerate}
 \noindent
 Положим \(\delta = \min\{\delta_{1},\ \delta_{2}\}\). При таком \(\delta \) оба неравенства выполнены автоматиески: \(\displaystyle \forall x \in \{0 < \vert x - a \vert < \delta\}\ \vert f(x) \vert < \frac{\varepsilon}{2}\) и \(\displaystyle \vert g(x) \vert < \frac{\varepsilon}{2}\). 
-Следовательно, \(\displaystyle \forall x \in \{0 < \vert x - a \vert < \delta\}\ \vert f(x) \pm g(x) \vert \leq \vert f(x) \vert \pm \vert g(x) \vert < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon \implies f(x) \pm g(x)\) --- бесконечно малая функция.\\
-\underline{Следствие.}\\
+Следовательно, \(\displaystyle \forall x \in \{0 < \vert x - a \vert < \delta\}\ \vert f(x) \pm g(x) \vert \leq \vert f(x) \vert \pm \vert g(x) \vert < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon \implies f(x) \pm g(x)\) --- бесконечно малая функция.\\[0.1cm]
+\underline{Следствие.}\\[0.1cm]
 Алгебраическая сумма любого конечного числа бесконечно малых функций является бесконечно малой функцией.
 
 %────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
@@ -32,12 +32,12 @@
     Произведение бесконечно малой (в точке \(a\)) функции на ограниченную (в окрестности точки \(a\)) функцию --- это бесконечно малая (в точке \(a\)) функция.
 \end{theorem}
 \noindent
-\underline{Доказательство.}\\
+\underline{Доказательство.}\\[0.1cm]
 Пусть \(f(x)\) --- бесконечно малая в точке \(a\) функция. Пусть \(g(x)\) --- функция, ограниченая в некоторой проколотой окрестности \(\omega\) точки \(a\) (\(\displaystyle \exists m > 0 : \forall x \in \omega\ \vert g(x) \vert \leq m\)).\\
 Зафиксируем произвольное \(\displaystyle \varepsilon > 0\). Так как \(g(x)\) бесконечно мала, \(\displaystyle \forall \varepsilon > 0\ \exists \delta > 0: \forall x \in \{0 < \vert x - a \vert < \delta\}\ \vert f(x) \vert < \frac{\varepsilon}{m}\).\\
 Возьмем \(\delta_{1} < \delta \) столь малым, чтобы проколотая \(\delta_{1}\)-окрестность точки \(a\) целиком принадлежала \(\omega \).
-Тогда \(\displaystyle \forall \varepsilon > 0\ \exists \delta = \delta_{1} > 0: \forall x \in \{0 < \vert x - a \vert < \delta_{1}\}\ \vert f(x)g(x) \vert < \vert f(x) \vert \vert g(x) \vert < \frac{\varepsilon}{m} \cdot m = \varepsilon\).\\        
-\underline{Следствие.}\\
+Тогда \(\displaystyle \forall \varepsilon > 0\ \exists \delta = \delta_{1} > 0: \forall x \in \{0 < \vert x - a \vert < \delta_{1}\}\ \vert f(x)g(x) \vert < \vert f(x) \vert \vert g(x) \vert < \frac{\varepsilon}{m} \cdot m = \varepsilon\).\\[0.1cm]
+\underline{Следствие.}\\[0.1cm]
 Произведение конечного числа ограниченных функций, среди которых хотя бы одна функция является бесконечно малой, является бесконечно малым.
 
 %────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
@@ -53,7 +53,7 @@
     Функция \(f(x)\) называется бесконечно малой более высокого порядка малости (имеет более высокий порядок малости), чем \(g(x)\) при \(x \to a\), если \(\displaystyle \lim\limits_{x \to a}\frac{f(x)}{g(x)} = 0\).   
 \end{definition}
 \noindent
-\underline{Замечание:} обозначается как \(f = o(g)\).\\
+\underline{Замечание:} обозначается как \(f = o(g)\).\\[0.1cm]
 \textbf{Пример.} \(x^2 = o(x)\) при \(x \to 0\).
 
 %────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
@@ -61,9 +61,9 @@
     Бесконечно малые функции \(f(x)\) и \(g(x)\) называются бесконечно малыми одного порядка, если \(\displaystyle \lim\limits_{x \to a}\frac{f(x)}{g(x)} = const \neq 0\).   
 \end{definition}
 \noindent
-\underline{Замечание 1:} обозначается как \(f = O(g)\) при \(x \to a\).\\
+\underline{Замечание 1:} обозначается как \(f = O(g)\) при \(x \to a\).\\[0.1cm]
 \textbf{Пример 1.} \(2x^2 + x^3 = O(x^2)\) при \(x \to 0\).\\
-\underline{Замечание 2:} если предел отношения равен 1, то фунции называаются эквивалентными (\(f(x) \sim g(x)\)).\\
+\underline{Замечание 2:} если предел отношения равен 1, то фунции называаются эквивалентными (\(f(x) \sim g(x)\)).\\[0.1cm]
 \textbf{Пример 2.} \(x^2 + x^3 \sim x^2\) при \(x \to 0\).\\
 \textbf{Пример 3.} \(\sin(x) \sim x\) при \(x \to 0\).\\
 \underline{Замечание 3:} для неопределенности \(\displaystyle \frac{0}{0}\) в случае, кода рассматриваются односторонние пределы, все определения сохраняют силу.
@@ -79,10 +79,10 @@
   \item \(o(g + o(g)) = o(g)\) (Например, \(o(x + 2x^2) = o(x)\)).     
 \end{enumerate}
 \noindent
-\underline{Замечание:} все равенства с \(o\) читаются в одну сторону (знак 'равно' означает символ 'принадлежит').\\
+\underline{Замечание:} все равенства с \(o\) читаются в одну сторону (знак 'равно' означает символ 'принадлежит').\\[0.1cm]
 \textbf{Пример.} \(x^2 = o(x)\), но \(o(x) \neq x^2\).\\
 \underline{Доказательство пункта 1.}\\
-Пусть \(\displaystyle \alpha_{1}(x) = o(g),\ \alpha_{2}(x) = o(g)\). Тогда \(\displaystyle \lim\limits_{x \to a}\frac{\alpha_{1}}{g(x)} = \lim\limits_{x \to a}\frac{\alpha_{2}}{g(x)} = 0 \implies \lim\limits_{x \to a} \frac{\alpha_{1} + \alpha_{2}}{g(x)} = 0 + 0 = 0\).
+Пусть \(\displaystyle \alpha_{1}(x) = o(g),\ \alpha_{2}(x) = o(g)\). Тогда \(\displaystyle \lim\limits_{x \to a}\frac{\alpha_{1}(x)}{g(x)} = \lim\limits_{x \to a}\frac{\alpha_{2}(x)}{g(x)} = 0 \implies \lim\limits_{x \to a} \frac{\alpha_{1}(x) + \alpha_{2}(x)}{g(x)} = 0 + 0 = 0\).
 
 %────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 \begin{definition}
@@ -120,10 +120,10 @@
     Если \(\lim\limits_{x \to a}f(x) = b = const\), то \(f(x)\) можно представить в виде \(\displaystyle b + \alpha(x)\), где \(\displaystyle \alpha(x)\) --- бесконечно малая в точке \(a\) функция.     
 \end{lemma}
 \noindent
-\underline{Доказательство.}\\
+\underline{Доказательство.}\\[0.1cm]
 Согласно определению предела \(\displaystyle \forall \varepsilon > 0\ \exists \delta > 0: \forall x \in \{0 < \vert x - a \vert < \delta \}\ \vert f(x) - b \vert < \varepsilon\). Это и означает, что функция \(\displaystyle f(x) - b = \alpha(x)\) бесконечно малая в точке \(a\). То есть
 \(\displaystyle f(x) = b + [f(x) - b] = b + \alpha(x)\).
-\begin{lemma}[Обратная]
+\begin{lemma}
     Если функцию при \(x \to a\) можно представить как \(\displaystyle b + \alpha(x)\), где \(\displaystyle \alpha(x)\) бесконечно малая, то \(\displaystyle \lim\limits_{x \to a}f(x) = b\).  
 \end{lemma}    
 \end{document}

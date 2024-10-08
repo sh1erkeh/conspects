@@ -115,8 +115,8 @@
     \noindent\tikz\node[inner sep=1ex, draw=black!30,fill=white, 
     anchor=west, overlay, rounded corners=1pt] at (0em, 1em)
     {\begin{varwidth}{\textwidth}
-        \textbf{\ifthenelse{\equal{##1}{}}{#2 \thetheorem}{#2
-            \thetheorem\ -- ##1}}
+        \textbf{\ifthenelse{\equal{##1}{}}{#2 \thelemma}{#2
+            \thelemma\ -- ##1}}
       \end{varwidth}
     };\par\noindent
   }%
@@ -139,8 +139,8 @@
     \noindent\tikz\node[inner sep=1ex, draw=black!30,fill=white, 
     anchor=west, overlay, rounded corners=1pt] at (0em, 1em)
     {\begin{varwidth}{\textwidth}
-        \textbf{\ifthenelse{\equal{##1}{}}{#2 \thetheorem}{#2
-            \thetheorem\ -- ##1}}
+        \textbf{\ifthenelse{\equal{##1}{}}{#2 \theclaim}{#2
+            \theclaim\ -- ##1}}
       \end{varwidth}
     };\par\noindent
   }%
