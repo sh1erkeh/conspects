@@ -1,0 +1,152 @@
+\documentclass{article}
+
+\usepackage{../definition}
+\usepackage{../theorem}
+\usepackage{../preamble}
+
+\title{Лекция 7}
+\author{}
+\date{15 октября 2024}
+
+\begin{document}
+\maketitle
+
+\section{Число e}
+Рассмотрим последовательность \(\displaystyle x_{n} = \left(1 + \frac{1}{n}\right)^{n}\), докажем, что она является монотонной и ограниченной.\\
+\begin{enumerate}
+    \item Вспомним неравенство Бернулли: \(\displaystyle \forall n \in \mathbb{N},\ \forall x \in {[-1, +\infty)}: (1 + x)^{n} = 1 + nx\).
+    \item Используя неравенство, покажем, что \(x_{n}\) монотонно возрастает.
+    \(\displaystyle \frac{x_{n + 1}}{x_{n}} = \displaystyle \frac{\displaystyle \left(1 + \frac{1}{n + 1}\right)^{n + 1}}{\displaystyle \left(1 + \frac{1}{n}\right)^{n}} = \frac{\displaystyle \left(1 + \frac{1}{n + 1}\right)^{n + 1}}{\displaystyle \left(1 + \frac{1}{n}\right)^{n + 1}} \cdot \left(1 + \frac{1}{n}\right) = \left(1 - \frac{1}{(n + 1)^2}\right)^{n + 1} \cdot \frac{n + 1}{n} > \left(1 - \frac{n + 1}{(n + 1)^2}\right) \cdot \frac{n + 1}{n} = 1 \implies \forall n \in \mathbb{N}: x_{n + 1} > x_{n}\).     
+    \item Положим \(\displaystyle y_{n} = x_{n} \cdot \left(1 + \frac{1}{n}\right)\), очевидно, что \(\displaystyle \forall n \in \mathbb{N}\ y_{n} > x_{n}\). Можно доказать, что \(y_{n}\) монотонно убывает (по аналогии с пунктом 2).
+    \item Заметим, что \(x_{n} \geq 2\) и \(y_{n} \leq 4\). То есть последовательности \(x_{n}\) и \(y_{n}\) монотонны и ограниченны \(\implies x_{n}\) сходится. 
+\end{enumerate}
+
+\begin{definition}[Определение числа е]
+    Числом \(e\) называется предел последовательности \(\{x_n\}\), где \(x_{n} = \left(1 + \frac{1}{n}\right)^{n}\).  
+\end{definition}
+
+%────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+\section{Непрерывность функции}
+\subsection{Непрерывность и точки разрыва функции}
+Пусть функция \(f(x)\) определена в некоторой проколотой окрестности точки \(a\).  
+\begin{definition}
+    Функция \(f(x)\) называется непрерывной в точке \(a\), если \(\exists \lim\limits_{x \to a}f(x) = f(a)\).   
+\end{definition}
+\noindent
+\textbf{Пример 1.} \(f(x) = \sin(x)\) непрерывна в нуле, так как \(\sin(0) = 0\) и \(\lim\limits_{x \to 0}\sin(x) = 0\).\\
+\textbf{Пример 2.} \(\displaystyle f(x) = \frac{P_{n}(x)}{Q_{m}(x)}\) непрерывна в любой точке, в которой \(Q_{m}(x)\) отличен от нуля.
+\begin{definition}[Непрерывность на языке {$\varepsilon,\ \delta$}]
+    Функция \(f(x)\) называется непрерыной в точке \(a\), елси \(\forall \varepsilon > 0\ \exists \delta > 0\ \forall x \in \{\vert x - a \vert < \delta\}: \vert f(x) - f(a) \vert < \varepsilon\).   
+\end{definition}
+\noindent
+
+\begin{claim}[Свойство устойчивости знака непрерывной функции]
+    Если \(f(x)\) непрерывна в точке \(a\) и положительна в этой точке, то она будет положительной и в некоторой окрестности точки \(a\).
+\end{claim}
+\noindent
+\underline{Доказательство.}
+\begin{enumerate}
+    \item Будем считать, что \(f(a) > 0\).
+    \item Возьмем \(\varepsilon = f(a)\), тогда (согласно определению) существует такое \(\delta\), что \(\vert f(x) - f(a) \vert < \varepsilon = f(a)\) в \(\delta\)-окрестности точки \(a\). 
+    \item \(-f(a) < f(x) - f(a) < f(a) \implies f(x) > 0\) в \(\delta\)-окрестности точки \(a\).
+\end{enumerate}
+\noindent
+\underline{Домашнее задание}. Проверить на истинность утверждения:
+\begin{enumerate}
+    \item Если \(f(x)\) непрерывна в точке \(a\), то \(\vert f(x) \vert\) непрерывна в точке \(a\).
+    \item Если \(\vert f(x) \vert\) непрерывна в точке \(a\), то \(f(x)\) непрерывна в точке \(a\).    
+\end{enumerate}
+
+\subsection{Односторонняя непрерывность}
+Пусть \(f(x)\) определена в правой полуокрестности точки \(a\), то есть при \(x \in {[a,\ a + \delta)}\).
+\begin{definition}
+    Функция \(f(x)\) называется непрерывной справа в точке \(a\), если \(\exists \lim\limits_{x \to a^+}f(x) = f(a)\).   
+\end{definition} 
+\noindent
+\underline{Замечание:} аналогично определяется непрерывность слева.\\
+\textbf{Пример.} Рассмотрим \(\displaystyle f(x) = \left[x\right]\). \(\displaystyle \forall n \in \mathbb{Z}\ \lim\limits_{x \to n^+}f(x) = n\), \(\lim\limits_{x \to n^-}f(x) = n - 1\), при этом \(f(n) = n\). 
+То есть \(f(x)\) непрерывна в точках \(x = n\) только справа. В других точках она непрерывна и справа, и слева.
+
+\begin{theorem}
+    Если функция \(f(x)\) непрерывна в точке \(a\) и слева, и справа, то она непрерывна в этой точке.  
+\end{theorem}
+\noindent
+\underline{Доказательство.}
+\begin{enumerate}
+    \item По условию: \(\exists \lim\limits_{x \to a^+}f(x) = \lim\limits_{x \to a^-}f(x) = f(a)\).
+    \item Если односторонние пределы функции в точке равны \(f(a)\) , то у неё существует предел в этой точке равный \(f(a)\) (это утверждение было доказано ранее). 
+\end{enumerate}
+
+\subsection{Точки разрыва}
+\begin{definition}
+    Предельная точка области определения функции \(f(x)\), в которой данная функция не является непрерывной, называется точкой разрыва данной функции. 
+\end{definition}
+\noindent
+\textbf{Пример 1.} \(f(x) = \left[x\right]\) разрывна в точках \(x = n\).\\
+\textbf{Пример 2.} Функция Дирихле \(D(x) =\) 
+\(
+\begin{cases}
+    1 & \text{если}\ x \in \mathbb{Q}\\
+    0 & \text{если}\ x \in \mathbb{I}\\  
+\end{cases}
+\).\\
+\textbf{Пример 3.} \(f(x) = x \cdot D(x)\) непрерывна в нуле и разрывна во всех остальных точках. 
+
+\subsection{Классификация точке разрыва}
+\begin{definition}[Устранимая точка разрыва]
+    Точка \(a\) называется точкой устранимого разрыва, если \(\exists \lim\limits_{x \to a}f(x) = b\), но при этом либо \(f(x)\) не определена в точке \(a\), либо \(f(a) \neq b\).     
+\end{definition}
+\noindent
+\underline{Замечание 1:} если положить \(f(a) = b\), то разрыв будет устранен.\\
+\textbf{Пример.} \(\displaystyle f(x) = \frac{\sin(x)}{x}\). Далее будет доказано, что \(\exists \lim\limits_{x \to 0}f(x) = 1\), но при этом \(f(x)\) в нуле не определена.\\
+\underline{Замечание 2:} \(\displaystyle f(x) = 
+\begin{cases}
+    \displaystyle \frac{\sin(x)}{x} & \text{если}\ x \neq 0\\
+    1 & \text{если}\ x = 0\\ 
+\end{cases}
+\) непрерывна на \(\mathbb{R}\). 
+
+\begin{definition}[Разрыв первого рода]
+    Точка \(a\) называется точкой разрыва первого рода функции \(f(x)\) , если \(
+    \begin{cases}
+        \exists \lim\limits_{x \to a^+}f(x) = b\\
+        \exists \lim\limits_{x \to a^-}f(x) = c\\
+    \end{cases}\), но \(b \neq c\). 
+\end{definition}
+\noindent
+\textbf{Пример 1.} \(f(x) = \left[x\right]\) 
+
+\begin{definition}[Разрыв второго рода]
+    Точка \(a\) называется точкой разрыва второго рода функци \(f(x)\), если в этой точке не существует хотя бы один из односторонних пределов.  
+\end{definition}
+\noindent
+\textbf{Пример 1.} \(\displaystyle f(x) = \sin\left(\frac{1}{x}\right)\). Точка \(0\) является точкой разрыва второго рода.\\
+\textbf{Пример 2.} \(\displaystyle f(x) = \frac{1}{x}\).\\
+\textbf{Пример 3.} \(\displaystyle f(x) = 2^{\displaystyle \frac{1}{x - 1}}\). В точке \(1\) разрыв второго рода.
+
+\subsection{Свойства непрерывных функций}
+\begin{theorem}
+    Пусть \(f(x)\) и \(g(x)\) --- непрерывные в точка \(a\) функции, тогда функции \(\displaystyle f(x) \pm g(x)\), \(\displaystyle f(x) \cdot g(x)\), \(\displaystyle \frac{f(x)}{g(x)}\) (при условии, что \(g(a) \neq 0\)).       
+\end{theorem}
+\noindent
+\underline{Замечание:} доказательство следует из арифметических свойств пределов.
+
+\subsection{Непрерывность сложной функции}
+\begin{definition}
+    Пусть аргумент \(t\) некоторой функции \(f\) является функцией \(g(x)\), тогда говорят, что \(y = f(g(x))\) --- сложная функция (суперпозиция) переменной \(x\).
+\end{definition}
+\noindent
+\textbf{Пример 1.} \(y = \sin(x^2)\).
+
+\begin{theorem}[О непрерывности сложной функции]
+    Пусть функция \(t = \varphi(x)\) непрерывна в точке \(a\), при этом \(\varphi(a) = b\). Пусть функция \(y = f(t)\) непрерывна в точке \(b\). 
+    Тогда сложная функция \(y = f(\varphi(x))\) непрерывна в точке \(a\).      
+\end{theorem}
+\noindent
+\underline{Доказательство.} 
+\begin{enumerate}
+    \item По сути, требуется доказать, что \(\lim\limits_{x \to a}f(\varphi(x)) = f(\varphi(a))\). То есть, что \(\forall \varepsilon > 0\ \exists \delta > 0: \vert f(\varphi(x)) - f(\varphi(a)) \vert < \varepsilon\) при \(\vert x - a \vert < \delta \).
+    \item Зададим произвольное \(\varepsilon > 0\), тогда \(\exists \gamma > 0: \vert f(t) - f(b) \vert < \varepsilon\) при \(\vert t - b \vert < \gamma\).
+    \item В силу непрерывности функции \(\varphi(x)\) в точке \(a\), для данного \(\gamma\) \(\exists \delta > 0: \vert \varphi(x) - \varphi(a) \vert < \delta\) при \(\vert x - a \vert < \delta\).
+\end{enumerate}
+\end{document}
