@@ -1,0 +1,97 @@
+\documentclass{article}
+
+\usepackage{../definition}
+\usepackage{../theorem}
+\usepackage{../preamble}
+
+\title{Лекция 8}
+\author{}
+\date{21 октября 2024}
+
+\begin{document}
+\maketitle
+
+\begin{definition}
+    Функция \(f(x)\) называется непрерывной на множестве \(X\), если она непрерывна в каждой точке этого множества.  
+\end{definition}
+\noindent
+\textbf{Пример.} \(\displaystyle f(x) = \frac{P_{n}(x)}{Q_{m}(x)}\) непрерывна на любом интервале, на котором \(Q_{m}(x) \neq 0\).   
+
+\begin{theorem}
+    Если функция \(f(x)\) непрерывна на \({[a, b]}\) и \(f(a)f(b) < 0\), то \(\exists c \in {[a, b]}: f(c) = 0\).  
+\end{theorem}
+\noindent
+\underline{Доказательство:}
+\begin{enumerate}
+    \item Пусть (без ограничения общности) \(f(a) < 0\) и \(f(b) > 0\).
+    \item По теореме об устойчивости знака непрерывной функции, \(f(x) < 0\) в правой полуокрестности точки \(a\).
+    \item Рассмотрим \(\displaystyle X = \{\widetilde{x}\ |\ f(x) < 0\ \text{при}\ a \leq x < \widetilde{x}\}\). \(X\) ограничено сверху \(\implies \exists \sup{X} = s\).
+    \item Заметим, что \(\displaystyle \forall x_{0} < s\ f(x_{0}) < 0\) (если \(\displaystyle x_{0} < 0\), то \(\displaystyle x_{0}\) не является верхней гранью \(\displaystyle X \implies \exists \widetilde{x} \in X: \widetilde{x} > x_{0}\). \(\displaystyle f(x) < 0\) на \(\displaystyle {[a, \widetilde{x})} \implies \displaystyle f(x_{0}) < 0\)).
+    \item Докажем, что \(f(s) = 0\). Предположим противное:
+    \begin{enumerate}
+    \item \(f(s) < 0\). Тогда, по теореме об устойчивости знака, \(f(x) < 0\) в некоторой окрестности точки \(s \implies \exists \widetilde{x} > s: f(x) < 0\) на \({[a, \widetilde{x})} \implies \sup{X} \neq s\).   
+    \item \(f(s) > 0\), Тогда, по теореме об устойчивости знака, \(f(x) > 0\) в некоторой окрестности точки \(s \implies \exists \widetilde{x} < s: f(x) > 0\) на \({[a, \widetilde{x})} \implies \exists x_{0} < s: f(x) > 0\) (противоречит (3)).
+    \end{enumerate}
+    \item В обоих случаях получено противоречие \(\implies f(s) = 0\).
+\end{enumerate}
+
+\begin{theorem}[О промежуточном значении]
+    Пусть \(f(x)\) непрерывна на \({[a, b]}\), причем \(
+    \begin{cases}
+        f(a) = A\\
+        f(b) = B
+    \end{cases} \implies \forall C \in (A, B)\ \exists c \in {[a, b]}: f(c) = C\).   
+\end{theorem}
+\noindent
+\underline{Доказательство:}
+\begin{enumerate}
+    \item Пусть (без ограничения общности) \(A < C < B\).
+    \item Введем \(g(x) = f(x) - C\). \(g(x)\) непрерывна на \({[a, b]}\), причем \(g(a) = f(a) - C = A - C < 0\) и \(g(b) = f(b) - C = B - C > 0\). 
+    \item По теореме 1: \(\exists c \in (a, b): g(c) = 0 \implies f(c) = g(c) + C = C\).       
+\end{enumerate}
+
+\section{Обратные функции}
+
+\begin{definition}
+    Отображение \(R: X \to Y\) называется 
+    \begin{enumerate}
+        \item Инъективным, если \(\forall x \in X\ \exists!\ y \in Y: f(x) = y\).
+        \item Сюръективным, если \(\forall y \in Y\ \exists x \in X: f(x) = y\). 
+        \item Биективным, если оно и инъективно, и сюръективно.
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}
+    Если задана биективная функция \(f: X \to Y\), то на множестве \(Y\) можно определеить \(f^{-1}\) (обратную к \(f\) функцию).
+\end{definition}
+\noindent
+\underline{Замечание:} \(f\) является обратной к \(f^{-1}\).\\[0.15cm]
+\textbf{Пример 1.} \(f(x) = x^2\ \{x > 0\}\). Очевидно, что \(E(f) = {[0, +\infty)}\). Тогда \(f^{-1}(y) = \sqrt{y}\ \{y \geq 0\}\).\\[0.15cm]
+\textbf{Пример 2.} \(f(x) = x^2\ \{x \in \mathbb{R}\}\). Очевидно, что \(E(f) = {[0, +\infty)}\). Обратной функции к \(f(x)\) не существует, так как отношение, установленное данной функцией, не является биекцией.
+
+\begin{theorem}
+    Пусть функция \(f(x)\) определена, строго монотонна и непрерывна на \({[a, b]}\). Тогда
+    \begin{enumerate}
+        \item \(E(f) = \left[f(a), f(b)\right]\).
+        \item На \(E(f)\) существует обратная функция --- \(f^{-1}(y)\).
+        \item \(f^{-1}(y)\) строго монотонна.
+        \item \(f^{-1}(y)\) непрерывна на \(E(f)\). 
+    \end{enumerate}  
+\end{theorem}
+\noindent
+\underline{Доказательство:}
+\begin{enumerate}
+    \setcounter{enumi}{-1}
+    \item Пусть (без ограничения общности) \(f(x)\) строго возрастает на \([a, b]\).
+    \item Докажем пункт 1:
+    \begin{enumerate}
+        \item В силу непрерывности \(f(x)\) принимает все значения от \(f(a)\) до \(f(b)\).
+        \item В силу монотонности \(f(x)\) не имеет значений меньших \(f(a)\) или больших \(f(b)\).       
+    \end{enumerate}
+    \item Докажем пункт 2:
+    \begin{enumerate}
+        \item Предположим, что \(\exists y \in Y:\ \exists x_{1},\ x_{2} \in X: f(x_{1}) = f(x_{2}) = y\). 
+        \item Получим противоречие тому, что \(f(x)\) строго монотонна.   
+    \end{enumerate}
+\end{enumerate}
+\end{document}
