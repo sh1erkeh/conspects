@@ -7,6 +7,12 @@ function notmath(context) {
 }
 endglobal
 
+snippet begg "begin custom env" iA
+\begin{${1:eg}}
+	$0
+\end{${1:eg}}
+endsnippet
+
 snippet `table([1-9]{1})\ ([1-9]{1})` "Table environment" bA
 \begin{table}[H]
 	\centering
@@ -630,8 +636,8 @@ endsnippet
 
 priority 200
 context math(context)
-snippet lim "limit" A
-\lim\limits_{x \to } 
+snippet `(?<!\\)lim` "limit" A
+\lim_{${1:n} \to ${2:\infty}} 
 endsnippet
 
 context math(context)
@@ -752,9 +758,8 @@ snippet ' "prime" iA
 ^{\prime} $0
 endsnippet
 
-context notmath(context)
-snippet `(\\?\w+)(b|B)f` "textbf" A
-\textbf{``rv = m[1]``} $0
+snippet bf "textbf" A
+\textbf{$1} $0
 endsnippet
 
 context math(context)
@@ -816,6 +821,6 @@ snippet lemma "lemma" A
 \end{lemma}
 endsnippet
 
-snippet ul "underline" A
-\underline{$1} $0
+snippet `(\\?\w+)(u|U)l` "underline" A
+\underline{``rv = m[1]``} $0
 endsnippet
