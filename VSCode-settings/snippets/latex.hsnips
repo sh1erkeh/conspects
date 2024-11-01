@@ -55,37 +55,6 @@ snippet `table([1-9]{1})\ ([1-9]{1})` "Table environment" bA
 \end{table}
 endsnippet
 
-context math(context)
-snippet `ary([1-9]{1})\ ([1-9]{1})` "Array environment" ibA
-\begin{array}{``
-	let len = m[2];
-	let results = "";
-	for(var i=0; i<len; i++){
-		results += "c"
-	}
-	rv = results;
-	``}
-	``
-	let order = 1;
-	let nrow = m[1];
-	let ncol = m[2];
-	for (var i=0; i<nrow-1; i++){
-		for(var j = 0;j <ncol-1;j++){
-			rv += `${snip.tabstop(order)} & `;
-			order ++;
-		}
-		rv += ` ${snip.tabstop(order)} \\\\`+ `\\`+ `\n` + `	`;
-		order ++;
-	}
-	for(var j = 0;j <ncol-1;j++){
-		rv += `${snip.tabstop(order)} & `;
-		order ++;
-	}
-	rv += ` ${snip.tabstop(order)} \\\\`+ `\\`;
-	``
-\end{array}
-endsnippet
-
 priority 2000
 context math(context)
 snippet `(b|p)mat([1-9]{1})\ ([1-9]{1})` "matrix" iwA
@@ -172,6 +141,7 @@ context math(context)
 snippet `(?<![\\a-zA-Z])(;t|theta)` "\theta" A
 \theta $0
 endsnippet
+
 context math(context)
 snippet `(?<![\\a-zA-Z])(;vt|vartheta)` "\vartheta" A
 \vartheta $0
@@ -385,22 +355,6 @@ snippet @> "inclusion" iA
 endsnippet
 
 context math(context)
-snippet `([a-zA-Z])\1` "subscript" A
-_{``rv = m[1]``} $0
-endsnippet
-
-context math(context)
-snippet `([A-Za-z\d)}])\_([A-Za-z\d\-+][A-Za-z\d-+])` "auto subscript" A
-`` rv = m[1]``_{``rv = m[2]``$1} $0
-endsnippet
-
-priority 200
-context math(context)
-snippet `([A-Za-z\d)}])\^([A-Za-z\d\-+][A-Za-z\d-+])` "auto supscript" A
-`` rv = m[1]``^{``rv = m[2]``$1} $0
-endsnippet
-
-context math(context)
 snippet `(b|B)(ar)` "bar" A
 \overline{$1} $0
 endsnippet
@@ -423,23 +377,8 @@ snippet `(\\?[a-zA-Z]\w*|\\[^(^\s]+\})(t|T)(d)` "tilde" A
 endsnippet
 
 context math(context)
-snippet `(\\?[a-zA-Z]\w*|\\[^(^\s]+\})(b|B)(f)` "mathbf" A
-\mathbf{``rv = m[1]``} $0
-endsnippet
-
-context math(context)
-snippet `(\\?[a-zA-Z]\w*|\\[^(^\s]+\})(b|B)(m)` "bm" A
-\bm{``rv = m[1]``} $0
-endsnippet
-
-context math(context)
 snippet `(\\?[a-zA-Z]\w*|\\[^(^\s]+\})(,\.|\.,)` "Vector postfix" A
 \vec{``rv = m[1]``} $0
-endsnippet
-
-context math(context)
-snippet 1..n "sequence" iA
-$1_1, \dots, $1_n $0
 endsnippet
 
 context math(context)
@@ -481,73 +420,22 @@ snippet dm "display Math" bA
 endsnippet
 
 context math(context)
-snippet <> "<>" iA
-\langle $1 \rangle $0
-endsnippet
-
-context math(context)
-snippet lr, "<>" iA
-\left\langle $1 \right\\rangle $0
-endsnippet
-
-context math(context)
-snippet lrd "()" iA
-\left( $1 \right) $0
-endsnippet
-
-context math(context)
-snippet {} "{}" iA
-\\{ $1 \\} $0
-endsnippet
-
-context math(context)
-snippet lra "{}" iA
-\\left\\{ $1 \\right\\} $0
-endsnippet
-
-context math(context)
-snippet lrq "[]" iA
-\left[ $1 \right] $0
-endsnippet
-
-context math(context)
 snippet ceil "ceil" iA
-\lceil $1 \rceil $0
-endsnippet
-
-context math(context)
-snippet Ceil "ceil" iA
 \left\lceil $1 \right\rceil $0
 endsnippet
 
 context math(context)
-snippet flr "floor" iA
-\lfloor $1 \rfloor$0
-endsnippet
-
-context math(context)
-snippet Flr "floor" iA
+snippet floor "floor" iA
 \left\lfloor $1 \right\rfloor$0
 endsnippet
 
 context math(context)
 snippet abs "abs value" iA
-\vert ${1} \vert $0
-endsnippet
-
-context math(context)
-snippet Abs "abs value" iA
 \left\vert ${1} \right\vert $0
 endsnippet
 
-priority 200
 context math(context)
-snippet norm "norm" iA
-\lVert $1 \rVert $0
-endsnippet
-
-context math(context)
-snippet Norm "Norm" iA
+snippet norm "Norm" iA
 \left\lVert $1 \right\rVert $0
 endsnippet
 
@@ -633,18 +521,6 @@ snippet `\\supn` "supsetneq" A
 \supsetneq $0
 endsnippet
 
-
-priority 200
-context math(context)
-snippet `(?<!\\)lim` "limit" A
-\lim_{${1:n} \to ${2:\infty}} 
-endsnippet
-
-context math(context)
-snippet pt "\partial" iA
-\partial $0
-endsnippet
-
 priority 100
 context math(context)
 snippet pdif "d/dx" iA
@@ -680,34 +556,8 @@ snippet AA "forall" iA
 endsnippet
 
 context math(context)
-snippet `(x\.|\.x)` "times" A
-\times $0
-endsnippet
-
-context math(context)
-snippet split "split" iA
-\begin{split}
-	$1
-\end{split}$0
-endsnippet
-
-context math(context)
-snippet case "cases" iA
-\begin{dcases}
-	$1, &\text{ if } $3 ;\\\\
-	$2, &\text{ if } $4 ;\\\\
-	$5, &\text{ otherwise} .
-\end{dcases}$0
-endsnippet
-
-context math(context)
 snippet txt "text" iA
 \text{$1} $0
-endsnippet
-
-context math(context)
-snippet `(\\\\)([a-zA-Z])` A
-\mathbb{``rv = m[2].toUpperCase()``} $0
 endsnippet
 
 context math(context)
@@ -821,6 +671,6 @@ snippet lemma "lemma" A
 \end{lemma}
 endsnippet
 
-snippet `(\\?\w+)(u|U)l` "underline" A
-\underline{``rv = m[1]``} $0
+snippet ulm "underline" A
+\underline{$1}
 endsnippet
