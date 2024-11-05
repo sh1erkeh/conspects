@@ -1,1 +1,6 @@
 commits/
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.pre

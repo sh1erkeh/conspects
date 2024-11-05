@@ -1,0 +1,70 @@
+\documentclass{article}
+
+\usepackage{../definition}
+\usepackage{../theorem}
+\usepackage{../preamble}
+
+\title{Лекция 10}
+\author{}
+\date{5 ноября 2024}
+
+\begin{document}
+\maketitle
+
+\noindent Основные асимптотические формулы при \(x \to 0\):
+\begin{enumerate}[leftmargin=1cm]
+    \item \(\sin(x) = x + o(x)\)
+    \item \(\displaystyle \cos(x) = 1 - \frac{x^2}{2} + o(x^2)\)
+    \item \(\tan(x) = x + o(x)\)
+    \item \(\displaystyle \log_a(x) = \frac{x}{\ln(a)} + o(x)\)
+    \item \(a^x = 1 + x \cdot \ln(a) + o(x)\)
+    \item \((1 + x)^\alpha = 1 + \alpha x + o(x)\)      
+\end{enumerate}
+
+\section*{Производные и дифференциал}
+
+\begin{definition}
+    Пусть \[\exists \lim\limits_{\Delta x \to 0} \frac{f(x + \Delta x) - f(x)}{\Delta x}\]
+    Тогда эта величина называется производной функции \(f(x)\) и обозначается \(f^{\prime}(x)\).     
+\end{definition}
+\noindent
+\textbf{Пример 1.} \(\displaystyle f(x) = const \implies f^{\prime} = \lim\limits_{\Delta \to 0} \frac{c - c}{\Delta x} = 0\).\\[0.15cm]
+\textbf{Пример 2.} \(\displaystyle f(x) = x^n \implies f^{\prime} = \lim\limits_{\Delta x \to 0} \frac{(x + \Delta x)^n - x^n}{\Delta x} = \lim\limits_{\Delta x \to 0} \frac{n x^{n - 1} \cdot \Delta x + o(\Delta x)}{\Delta x} = n x^{n - 1}\).\\[0.15cm]
+\textbf{Пример 3.} \(\displaystyle f(x) = \sin(x) \implies f^{\prime} = \lim\limits_{\Delta x \to 0} \frac{\sin(x + \Delta x) - \sin(x)}{\Delta x} = \lim\limits_{\Delta x \to 0} \frac{\displaystyle 2\sin\left(\frac{\Delta x}{2}\right)\cos\left(\frac{\displaystyle \Delta x}{2} + x\right)}{\Delta x} = \lim\limits_{\Delta x \to 0} \cos\left(\frac{\Delta x}{2} + x\right) = \cos(x)\).\\[0.15cm]
+\textbf{Пример 4.} \(\displaystyle f(x) = \log_a{x} \implies f^{\prime} = \lim\limits_{\Delta x \to 0} \frac{\log_a(x + \Delta x) - \log_a(x)}{\Delta x} = \lim\limits_{\Delta x \to 0} \frac{\displaystyle \log_a\left(1 + \frac{\Delta x}{x}\right)}{\Delta x} = \frac{1}{x\ln(a)}\).
+
+\subsection*{Односторонние производные}
+
+\begin{definition}
+    Пусть \[\exists \lim\limits_{\Delta x \to 0^+} \frac{f(x + \Delta x) - f(x)}{\Delta x}\]
+    Тогда эта величина называется правосторонней производной функции \(f(x)\) и обозначается \(f^{\prime}_{+}(x)\). 
+\end{definition}
+\noindent
+\underline{Замечание:} аналогично определяется левосторонняя производная \(f^{\prime}_{-}(x)\).
+
+\begin{claim}
+    Производная функции \(f(x)\) в точке \(x_0\) существует \(\iff \exists f^{\prime}_{+}(x_0) = f^{\prime}_{-}(x_0)\). 
+\end{claim}
+\noindent
+\textbf{Пример 1.} \(f(x) = \left\vert x \right\vert\). \(\displaystyle f^{\prime} =
+\begin{cases}
+    \ \ 1 & \text{если}\ x > 0\\
+    -1 & \text{если}\ x \leq 0\\  
+\end{cases} \implies 
+f^{\prime}_{+}(0) \neq f^{\prime}_{-}(0) \implies \nexists f^{\prime}(0)\).
+
+\begin{definition}[Частная производная]
+    
+\end{definition}
+
+\subsection*{Геометрический смысл производной}
+{\color{red} КАРТИНКА}
+
+\begin{theorem}
+    Функция \(f(x)\) дифференцируема в точке \(x_0 \implies\) график \(f(x)\) имеет касательную в этой точке, причем угловой коэффициент касательной равен \(f^{\prime}(x_0)\). 
+\end{theorem}
+
+\begin{claim}
+    Уравнение касательной к графку функции \(f(x)\) в точке \(x_0\) имеет вид \(y = (x - x_0) \cdot f^{\prime}(x_0) + f(x_0)\).   
+\end{claim}
+\end{document}
