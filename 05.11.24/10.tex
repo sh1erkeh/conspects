@@ -33,7 +33,7 @@
 \textbf{Пример 3.} \(\displaystyle f(x) = \sin(x) \implies f^{\prime} = \lim\limits_{\Delta x \to 0} \frac{\sin(x + \Delta x) - \sin(x)}{\Delta x} = \lim\limits_{\Delta x \to 0} \frac{\displaystyle 2\sin\left(\frac{\Delta x}{2}\right)\cos\left(\frac{\displaystyle \Delta x}{2} + x\right)}{\Delta x} = \lim\limits_{\Delta x \to 0} \cos\left(\frac{\Delta x}{2} + x\right) = \cos(x)\).\\[0.15cm]
 \textbf{Пример 4.} \(\displaystyle f(x) = \log_a{x} \implies f^{\prime} = \lim\limits_{\Delta x \to 0} \frac{\log_a(x + \Delta x) - \log_a(x)}{\Delta x} = \lim\limits_{\Delta x \to 0} \frac{\displaystyle \log_a\left(1 + \frac{\Delta x}{x}\right)}{\Delta x} = \frac{1}{x\ln(a)}\).
 
-\subsection*{Односторонние производные}
+\section*{Односторонние производные}
 
 \begin{definition}
     Пусть \[\exists \lim\limits_{\Delta x \to 0^+} \frac{f(x + \Delta x) - f(x)}{\Delta x}\]
@@ -54,17 +54,45 @@
 f^{\prime}_{+}(0) \neq f^{\prime}_{-}(0) \implies \nexists f^{\prime}(0)\).
 
 \begin{definition}[Частная производная]
-    
+    Пусть дана функция \(f: \mathbb{R}^n \to \mathbb{R}\). Пусть
+    \[
+        \exists \lim\limits_{h_{i} \to 0} \frac{f(x_{1}, \dots , x_{i} - h_{i}, \dots , x_{m}) - f(x_{1}, \dots, x_{i}, \dots, x_{m})}{h_{i}} = a_{i}(x)
+    \]
+    Тогда эта величина называется частной производной функции \(f(x)\) в точке \(x = (x_{1}, \dots, x_{m})\) по переменной \(x_{i}\) и обозначается как \(\displaystyle \frac{\partial f}{\partial x_{i}}(x)\). 
 \end{definition}
 
-\subsection*{Геометрический смысл производной}
-{\color{red} КАРТИНКА}
+\section*{Геометрический смысл производной}
 
-\begin{theorem}
-    Функция \(f(x)\) дифференцируема в точке \(x_0 \implies\) график \(f(x)\) имеет касательную в этой точке, причем угловой коэффициент касательной равен \(f^{\prime}(x_0)\). 
-\end{theorem}
+\begin{minipage}{0.35\textwidth}
+    \begin{asy}
+        import graph;
+        import geometry;
+        size(6cm);
+                    
+        xaxis("$x$", 0, 20, Arrow);
+        yaxis("$y$", 0, 20, Arrow);
 
-\begin{claim}
-    Уравнение касательной к графку функции \(f(x)\) в точке \(x_0\) имеет вид \(y = (x - x_0) \cdot f^{\prime}(x_0) + f(x_0)\).   
-\end{claim}
+        real func(real x) { return 0.05 * (x - 4) * (x - 4) + 4.5; }
+        draw(graph(func, 0, 20));
+
+        real tangent_line(real x) { return 7 / 10 * x - 0.75; }
+        draw(graph(tangent_line, 15 / 14, 20));
+        
+        pair T = (11, tangent_line(11)), B = (15 / 14, 0);
+
+        markangle(Label("$\varphi_T = f^{\prime}(T_x)$", Relative(0.5)), n=1, (11, 0), B, T, blue);
+        dot("$O$", (0, 0), S); dot("$T$", (11, 7.7 - 0.75), SE);
+    \end{asy}
+\end{minipage}%
+\hfil
+\begin{minipage}{0.6\textwidth}
+    \begin{theorem}
+        \(\exists f^{\prime}(x_0) \implies\) график \(f(x)\) имеет касательную в точке \(x_0\), причем угловой коэффициент касательной равен \(f^{\prime}(x_0)\). 
+    \end{theorem}
+
+    \begin{claim}
+        Уравнение касательной к графку функции \(f(x)\) в точке \(x_0\) имеет вид \(y = (x - x_0) \cdot f^{\prime}(x_0) + f(x_0)\).   
+    \end{claim}
+\end{minipage}
+
 \end{document}

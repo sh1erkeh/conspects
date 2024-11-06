@@ -11,6 +11,103 @@
 \begin{document}
 \maketitle
 
+\section*{Дифференцируемость функции}
 
+\begin{definition}
+    Приращение аргумента \(\Delta x(h)\) --- это величина \((x + h) - x = h\).\\
+    Приращение функции \(\Delta f(x; h)\) --- это величина \(f(x + h) - f(x)\).    
+\end{definition}
+\noindent
+Положим \(\Delta x = \Delta x(h),\ \Delta y = \Delta f(x, \Delta x)\). Введем функцию
+\begin{equation} \label{eq:1}
+    \alpha(\Delta x) = \frac{\Delta y}{\Delta x} - f^{\prime}(x) = \frac{f(x + \Delta x) - f(x)}{\Delta x} - f^{\prime}(x)
+\end{equation}
+\(\alpha(\Delta x)\) определена при всех \(\Delta x \neq 0\) и бесконечно мала при \(x \to 0\), поэтому будем полагать, что \(\alpha(0) = 0\).\\
+Выразим из \ref{eq:1} \(\Delta y\) при \(\Delta x \neq 0\):
+\begin{equation} \label{eq:2}
+    \Delta y = f^{\prime}(x)\Delta x + \alpha(\Delta x)\Delta x
+\end{equation}
+
+\begin{definition}
+    Функция называется дифференцируемой в точке \(x\), если её приращение можно представить в виде
+    \[
+        \Delta y = A \Delta x + \alpha(\Delta x)\Delta x
+    \] То есть если слагаемое \(f^{\prime}(x)\Delta x\)  в \ref{eq:2} линейно относительно \(\Delta x\).  
+\end{definition}
+
+\begin{claim}
+    Функция дифференцируема в точке \(x_0 \iff \exists f^{\prime}(x_0)\). 
+\end{claim}
+\noindent
+\underline{Замечание:} данное обстоятельство справедливо только для функций одной переменной.\\
+
+\begin{theorem}[Необходимое условие дифференцируемости]
+    Функция \(f(x)\) дифференцируема в точке \(a \implies f(x)\) непрерывна в \(a\).   
+\end{theorem}
+\noindent
+\underline{Доказательство.}\\[0.1cm]
+Пусть \(f(x)\) дифференцируема в точке \(a\). Требуется доказать, что \(\exists \lim\limits_{x \to a}f(x) = f(a)\).
+\begin{enumerate}
+    \item Пусть \(x - a = \Delta x \iff x = a + \Delta x\), тогда \(\Delta x \to 0\) при \(x \to a\).
+    \item \(\lim\limits_{\Delta x \to 0} f(a + \Delta x) = f(a) \iff \lim\limits_{\Delta x \to 0} \left(f(a + \Delta x) - f(a)\right) = 0\).
+    \item Требуется доказать, что \(\lim\limits_{\Delta x \to 0} \Delta y = 0\).
+    \item По условию функция дифференцируема в точке \(a \implies \Delta y = f^{\prime}(x) \Delta x + o(\Delta x) \implies \lim\limits_{\Delta x \to 0} \Delta y = 0\).
+    \item Последнее равенство из пункта 4 называется разностной формой условия непрерывности.
+\end{enumerate}
+\underline{Замечание:} существуют непрерывные и недифференцируемые в точке функции (например, функция Вейерштрасса).
+
+\section*{Дифференциал функции}
+\begin{definition}
+    Дифференциалом (обозначается как \(dy\)) функции \(y = f(x)\) в точке \(x_0\) называется выражение \(f^{\prime}(x_0) \Delta x\).
+\end{definition}
+\noindent
+\underline{Замечание:} если производная отлична от нуля, то и дифференциал отличен от нуля.
+
+\begin{definition}
+    Дифференциалом (обозначается как \(dx\)) независимой переменной \(x\) называется приращение этой переменной. 
+\end{definition}
+\noindent
+\underline{Замечание:} если \(x\) --- независимая переменная, то производная функция в точке \(x\) равна \(\displaystyle \frac{dy}{dx}\).\\
+\textbf{Пример 1.} \(y = \sin(x) \implies dy = \cos(x) \cdot dx\), \(\displaystyle \at{d\ \sin(x)}{\frac{\pi}{3}} = \frac{dx}{2}\).
+
+\section*{Геометрический смысл дифференциала}
+\begin{minipage}{0.35\textwidth}
+    \begin{asy}
+        import graph;
+        import geometry;
+        size(6cm);
+        
+        xaxis("$x$", 0, 30, Arrow);
+        yaxis("$y$", -3, 30, Arrow);
+
+        TeXHead.size=new real(pen p=currentpen) {return 0.5mm;};
+        real func(real x) { return 0.05 * (x - 4) * (x - 4) + 4.5; }
+        draw(graph(func, 0, 26));
+
+        real tangent_line(real x) { return 7 / 10 * x - 0.75; }
+        draw(graph(tangent_line, 15 / 14, 26));
+        
+        pair T = (11, tangent_line(11)), B = (15 / 14, 0);
+
+        markangle(Label("$\varphi_T$", Relative(0.5)), n=1, (11, 0), B, T, blue);
+        dot("$O$", (0, 0), W); dot("$T$", (11, 7.7 - 0.75), SE);
+
+        Label delta_y = Label("$\Delta y$", align=(0,0), position=MidPoint, filltype=Fill(white), blue);
+        draw((25, 0) -- (25, func(25) - 0.2), L=delta_y, arrow=Arrows(TeXHead));
+
+        Label dy = Label("$dy$", align=(0,0), position=MidPoint, filltype=Fill(white), blue);
+        draw((20, 0) -- (20, tangent_line(20) - 0.2), L=dy, arrow=Arrows(TeXHead));
+
+        Label oy = Label("$o(\Delta x)$", position=EndPoint, align=NW, blue);
+        draw((20, tangent_line(20)) -- (20, func(20) - 0.2), L= oy, arrow=Arrows(TeXHead));
+
+        Label dx = Label("$dx$", align=(0,0), position=MidPoint, filltype=Fill(white), blue);
+        draw((0, -1.5) -- (25, -1.5), L=dx, arrow=Arrows(TeXHead));
+    \end{asy}
+\end{minipage}
+\begin{minipage}[t]{0.6\textwidth}
+    Дифференциал является наилучшим линейным приближением приращения функции.\\
+    Формула линеаризации функции: \(f(x + \Delta x) \approx f(x) + f^{\prime}(x) \cdot \Delta x\). 
+\end{minipage}
 
 \end{document}
