@@ -1,0 +1,66 @@
+\documentclass{article}
+
+\usepackage{../definition}
+\usepackage{../theorem}
+\usepackage{../preamble}
+
+\title{Лекция 13}
+\author{26 ноября 2024}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent\underline{Замечание:} утверждение <<функция \(f(x)\) дифференцируема в точке \(x_0\)>> принято обозначать как \(f(x) \in D(x_0)\).   
+%────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+\begin{theorem}[Инвариантности формы первого дифференциала\noindent]
+    \noindent\(g(t) \in D(t_0) \land g(t_0) = x_0 \land f(x) \in D(x_0) \implies f \circ g \in D(t_0)\), причем \(\displaystyle (f \circ g)^{\prime}_{t}(t_0) = f^{\prime}_{x}(x_0) \cdot g^{\prime}_{t}(t_0)\).  
+\end{theorem}
+\noindent\underline{Доказательство.}
+\begin{enumerate}
+    \item Так как \(f(x) \in D(x_0)\), \(f(x) - f(x_0) = f^{\prime}_x(x_0) \cdot (x - x_0) + o(x - x_0)\) при \(x \to x_0\).
+    \item \(o(x -x _0) = (x - x_0)o(1) = (x - x_0)\alpha(x)\), где \(\alpha(x) = o(1)\) при \(x \to x_0\). Доопределим \(\alpha(x_0) = 0\).
+    \item Так как \(g(t) \in D(t_0)\), \(g(t) - g(t_0) = g^{\prime}_t(t_0) \cdot (t - t_0) + o(t - t_0)\) при \(t \to t_0\).
+    \item \(f(g(t)) - f(g(t_0)) = f^{\prime}_x(x_0) \cdot (g(t) - g(t_0)) + (g(t) - g(t_0)) \cdot \alpha(g(t))\).
+    \item \(f(g(t)) - f(g(t_0)) = f^{\prime}_x(x_0) \cdot g^{\prime}_t(t_0) \cdot (t - t_0) + f^{\prime}_x(x_0) \cdot o(t - t_0) + g^{\prime}_t(t_0) \cdot (t - t_0) \cdot \alpha(g(t)) + o(t - t_0) \cdot \alpha(g(t))\).
+    \item \(f(g(t)) - f(g(t_0)) = f^{\prime}_x(x_0) \cdot g^{\prime}_x(t_0) \cdot (t - t_0) + o(t - t_0)\).
+    \item \(g(t) \to g(t_0) = x_0 \implies \alpha(g(t)) = o(1)\).
+    \item По теореме о пределе композиции \( \lim\limits_{t \to t_0} \alpha(g(t)) = \alpha \left( \lim\limits_{t \to t_0} g(t) \right) = 0\), ч.т.д.   
+\end{enumerate}
+
+%────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+\noindent\underline{Следствие 1:} \(d(f(g)) = f^{\prime}_x \cdot g^{\prime}_t \cdot dt\).\\[0.15cm]
+\noindent \underline{Следствие 2:} 
+\begin{enumerate}
+\item Пусть некоторая функция \(y(t(x))\) задана параметрически:
+\(\begin{cases}
+    x = x(t)\\
+    y = y(t)
+\end{cases}\), причем \(x(t)\) является возрастающей и непрерывной в \(U(t_0)\); \(x, y \in D(t_0)\); \(x^{\prime}(t) \neq 0\) и \(x(t_0) = x_0\). 
+% \item Тогда \(\displaystyle \at{y^{\prime}_x}{x = x_0} = \at{\frac{dy(t(x))}{dx}}{x = x_0} = \at{\frac{dy(t)}{dt}}{t = t_0} = \at{\frac{dt(x)}{dx}}{x = x_0} = \frac{\displaystyle \at{\frac{dy(t)}{dt}}{t = t_0}}{\displaystyle \at{\frac{dx(t)}{dt}}{t = t_0}} = \frac{\displaystyle y^{\prime}_t(t_0)}{x^{\prime}_t(t_0)}\).
+\item Тогда \(y \in D(x_0)\) и \(\displaystyle y^{\prime}_x(x_0) = (y \circ t)^{\prime}(x_0) = y^{\prime}_t(t_0) \cdot t^{\prime}_x(x_0) = \frac{y^{\prime}_t(t_0)}{x^{\prime}_t(t_0)}\).
+\end{enumerate}
+
+%────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+\section*{Производные высших порядков}
+\begin{definition}
+    Пусть \(f(x) \in D(U(x_0)) \land f^{\prime}(x) \in D(x_0)\). Тогда второй производной функции \(f(x)\) в точке \(x_0\) называется \[f^{\prime\prime}(x) = \at{(f^{\prime}(x))^{\prime}}{x = x_0}\].    
+\end{definition}
+\noindent \underline{Следствие:} по индукции можно определить производную \(n\)-ого порядка (\(f^{(n)}(x)\) --- производная от \(f^{(n-1)}(x)\)).\\[0.15cm]
+\noindent \underline{Замечание:} говорят, что функция выпукла вверх в точке \(x_0\), если \(f^{\prime\prime}(x_0) < 0\), вниз --- если \(f^{\prime\prime}(x_0) > 0\). Точки, в которых \(f^{\prime\prime}(x) = 0\) называются точками перегиба.\\[0.15cm]
+\noindent \textbf{Пример 1.} \(\displaystyle f(x) = x^{\alpha} \implies f^{(n)}(x) = \alpha(\alpha - 1)\dots(\alpha - n + 1)x^{\alpha - n}\)\\[0.15cm]
+\noindent \textbf{Пример 2.} \(\displaystyle f(x) = a^x \implies f^{(n)}(x) = \ln^n(a) a^x\)\\[0.15cm]
+\noindent \textbf{Пример 3.} \(\displaystyle f(x) = \sin(x) \implies f^{(n)}(x) = \sin\left(x + \frac{\pi n}{2}\right)\)\\[0.15cm]
+\noindent \textbf{Пример 4.} \(\displaystyle f(x) = \cos(x) \implies f^{(n)}(x) = \cos\left(x + \frac{\pi n}{2}\right)\)
+
+%────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+\begin{claim}
+    Если функции \(u(x)\) и \(v(x)\) имеют производные первого порядка, то 
+    \begin{enumerate}
+        \item \(\left(u(x) \pm v(x)\right)^{(n)} = u^{(n)}(x) \pm v^{(n)}(x)\).
+        \item \(\displaystyle \left(u(x) \cdot v(x)\right)^{(n)} = \sum\limits_{k = 0}^{n} \binom{n}{k} u^{(n - k)} v^{(k)}\) (формула Лейбница).
+    \end{enumerate}   
+\end{claim}
+\noindent \underline{Замечание:} считается, что \(f^{(0)}(x)\) --- это сама функция \(f(x)\).\\[0.15cm]
+\noindent \textbf{Пример.} \(\displaystyle f(x) = x^2 e^{3x} \implies f^{(10)}(x) = 3^{10}e^{3x}x^2 + 2\binom{1}{10} 3^9 e^{3x} x + 2\binom{2}{10} 3^8 e^{3x} +\) \dots \(= 3^9 e^{3x} (3x^2 + 20x + 30)\).  
+\end{document}

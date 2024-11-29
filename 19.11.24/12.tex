@@ -1,0 +1,88 @@
+\documentclass{article}
+
+\usepackage{../definition}
+\usepackage{../theorem}
+\usepackage{../preamble}
+
+\title{Лекция 12}
+\author{19 ноября 2024}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{Правила дифференцирования}
+
+\begin{theorem}
+    Пусть даны две дифференцируемые в точке \(x\) функции --- \(u(x)\) и \(v(x)\).
+    \begin{enumerate}
+        \item \((u(x) \pm v(x))^{\prime} = u(x)^{\prime} \pm v(x)^{\prime}\).
+        \item \((u(x) \cdot v(x))^{\prime} = u(x)^{\prime} \cdot v(x) + v(x)^{\prime} \cdot u(x)\).
+        \item \(\displaystyle \left(\frac{u(x)}{v(x)}\right)^{\prime} = \frac{u(x)^{\prime} \cdot v(x) - v(x)^{\prime} \cdot u(x)}{v(x)^2}\).  
+    \end{enumerate}   
+\end{theorem}
+\noindent
+\underline{Доказательство 2.}
+\begin{enumerate}
+    \item Пусть \(\displaystyle y(x) = u(x) \cdot v(x)\), тогда \(\Delta y = y(x + \Delta x) - y(x) = u(x + \Delta x) \cdot v(x + \Delta x) - u(x) \cdot v(x)\)
+    \item Прибавим и отнимем \(u(x) \cdot v(x + \Delta x)\): \(\Delta y = u(x + \Delta x) \cdot v(x + \Delta x) - u(x) \cdot v(x) - u(x) \cdot v(x + \Delta x) + u(x) \cdot v(x + \Delta x)\)
+    \item Сгруппируем слагаемые: \(\Delta y = (u(x + \Delta x) - u(x)) \cdot v(x + \Delta x) + u(x) \cdot (v(x + \Delta x) - v(x)) = \Delta u \cdot v(x + \Delta x) + \Delta v \cdot u(x)\) 
+    \item Поделим на \(\Delta x\): \(\displaystyle \frac{\Delta y}{\Delta x} = \frac{\Delta u}{\Delta x} \cdot v(x + \Delta x) + \frac{\Delta v}{\Delta x} \cdot u(x)\) 
+    \item Выполним предельный переход: \(\displaystyle \lim\limits_{\Delta x \to 0} \frac{\Delta y}{\Delta x} = u(x)^{\prime} \cdot v(x) + v(x)^{\prime} \cdot u(x)\).
+\end{enumerate}
+\noindent
+\underline{Следствие 1:} \((c \cdot y(x))^{\prime} = c \cdot y(x)^{\prime}\), где \(c\) --- константа\\
+\underline{Следствие 2:} \(\displaystyle (\tan(x))^{\prime} = \frac{1}{\cos^2(x)}\)\\
+\underline{Следствие 3:} \(\displaystyle (\cot(x))^{\prime} = -\frac{1}{\sin^2(x)}\)
+
+\section*{Производная обратной функции}
+
+\begin{theorem}
+    Пусть функция \(y = f(x)\) определена, строго монотонна и непрерывна в \(U(x_0)\).
+    \(\exists\ f^{\prime}(x_0) = y_0 \neq 0 \implies\) в некоторой \(U(y_0)\) существует обратная функция \(f^{-1}(y)\), дифференцируемая в точке \(y_0\), причем \(\displaystyle (f^{-1}(y_0))^{\prime} = \frac{1}{f^{\prime}(x_0)}\).    
+\end{theorem}
+\noindent
+\underline{Доказательство.}
+\begin{enumerate}
+    \item Рассмотрим некторой отрезок \({[a, b]},\ a < x_0 < b\). \(y = f(x)\) строго монотонна и непрерывна на \({[a, b]}\).
+    \item В силу теормеы о промежуточном значении, множеством значений функции будет являться \(Y = \left[f(a),\ f(b)\right]\).
+    \item На \(Y\) существует обратная функция \(x = f^{-1}(y)\), являющаяся строго монотонной и непрерывной, при этом \(y_0 \in \left[f(a),\ f(b)\right]\).
+    \item Придадим аргументу \(y\) обратной функции в точке \(y_0\) приращение \(\Delta y\) столь малое, что \(y_0 + \Delta y \in \left(f(a),\ f(b)\right)\).
+    \item \(\Delta x = f^{-1}(y_0 + \Delta y) - f^{-1}(y_0) \neq 0\) (в силу строгой монотонности обратной функции).
+    \item \(\displaystyle \frac{\Delta x}{\Delta y} = \frac{1}{\frac{\Delta y}{\Delta x}} \iff \lim\limits_{\Delta x \to 0} \frac{1}{\frac{\Delta y}{\Delta x}} = \lim\limits_{\Delta x \to o} \frac{\Delta x}{\Delta y} \iff (f^{-1}(y_0))^{\prime} = \frac{1}{f^{\prime}(x_0)}\).       
+\end{enumerate}
+\noindent
+\textbf{Пример 1.}
+\begin{enumerate}
+    \item \(\displaystyle f(x) = \sin(x),\ x \in \left[-\frac{\pi}{2},\ \frac{\pi}{2}\right]\).
+    \item \(x = \arcsin(y),\ y \in \left(-1,\ 1\right)\).
+    \item \(\displaystyle (\arcsin(y))^{\prime} = \frac{1}{\sin^{\prime}(x)} = \frac{1}{\cos(x)} = \frac{1}{\sqrt{1 - \sin^2(x)}} = \frac{1}{\sqrt{1 - y^2}}\).    
+\end{enumerate}
+\noindent
+\underline{Замечание:} при \(x \to \pm 1\ (\arcsin(x))^{\prime} \to \infty\) (касательная перпундикулярна графику).\\[0.15cm]
+\textbf{Пример 2.}
+\begin{enumerate}
+    \item \(\displaystyle y = \tan(x),\ x \in \left(-\frac{\pi}{2},\ \frac{\pi}{2}\right)\).
+    \item \(x = \arctan(y),\ y \in \left(-\infty,\ +\infty\right)\).
+    \item \(\displaystyle (\arctan(y))^{\prime} = \frac{1}{(\tan(x))^{\prime}} = \cos^2(x) = \frac{1}{1 + \tan^2(x)} = \frac{1}{1 + y^2}\).   
+\end{enumerate}
+
+\section*{Производная сложной функции}
+\begin{theorem}
+    Пусть \(t = \varphi(x)\) дифференцируема в точке \(x_0\) и \(\varphi(x_0) = t_0\). Пусть \(y = f(t)\) дифференцируема в точке \(t_0\).
+    Тогда сложная функция \(F(x) = f(\varphi(x))\) дифференцируема в точке \(x_0\), причем \(F^{\prime}(x_0) = f^{\prime}(t_0) \cdot \varphi^{\prime}(x_0) = f^{\prime}(\varphi(x_0)) \cdot \varphi^{\prime}(x_0)\).       
+\end{theorem}
+\noindent
+\underline{Доказательство.}
+\begin{enumerate}
+    \item По определению требуется доказать, что \(\Delta y = f^{\prime}(\varphi(x_0)) \cdot \varphi(x_0) \cdot \Delta x + \alpha(\Delta x) \cdot \Delta x\), где \(\alpha(\Delta x)\) --- бесконечно малая функция, \(\alpha(0) = 0\).   
+    \item \(\Delta t = \varphi(x_0 + \Delta x) - \varphi(x_0)\). В силу дифференцируемости, \(\Delta t = \varphi(x_0) \cdot \Delta x + \beta(\Delta x) \cdot \Delta x\), где \(\beta (\Delta x)\) --- бесконечно малая функция, \(\beta (0) = 0\).
+    \item \(\Delta y = f(t_0 + \Delta t) - f(t_0)\). В силу дифференцируемости, \(\Delta y = f^{\prime}(t_0) \cdot \Delta t + \gamma(\Delta t) \cdot \Delta t\), где \(\gamma (\Delta x)\) --- бесконечно малая функция, \(\gamma (0) = 0\).
+    \item \(\Delta y = f^{\prime}(t_0) \cdot \varphi^{\prime}(x_0) \cdot \Delta x + (\beta \cdot f^{\prime}(t_0) + \gamma \cdot f^{\prime}(x_0) + \gamma \cdot \beta) \cdot \Delta x = f^{\prime}(\varphi(x_0)) \cdot \varphi^{\prime}(x_0) \cdot \Delta x + \theta(\Delta x) \cdot \Delta x\), где \(\theta (\Delta x)\) --- бесконечно малая функция, \(\theta (0) = 0\).
+\end{enumerate}
+\noindent
+\underline{Следствие 1:} \(f(x) = x^{\alpha},\ \alpha \in \mathbb{R} \implies (x^{\alpha})^{\prime} = \alpha \cdot x^{\alpha -1}\).\\[0.15cm]
+\underline{Следствие 2:} \(\displaystyle f(x) = \ln(\cos(\arctan(e^x))) \implies f^{\prime}(x) = \frac{-e^{2x}}{1 + e^{2x}}\).\\
+\underline{Следствие 3:} \(\displaystyle f(x) = u(x)^{v(x)} \implies f^{\prime}(x) = u^v \cdot \ln(u) \cdot v^{\prime} + v \cdot u^{v - 1} \cdot u^{\prime}\).\\[0.15cm]
+Доказательства следствий предлагаются читателю в качестве несложного упражнения.
+\end{document}
