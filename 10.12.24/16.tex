@@ -11,8 +11,102 @@
 \begin{document}
 \maketitle
 
-\section{Критерий Коши}
+\section{Критерий Коши для последовательностей}
 
+\begin{definition}
+    Числовая последовательность \(\{x_n\}\) называется фундаментальной, если
+    \[
+        \forall \varepsilon > 0\ \exists N(\varepsilon) \in \mathbb{N}: \forall n, m > N\ \left\vert x_{m} - x_{n} \right\vert < \varepsilon
+    \] 
+\end{definition}
+\noindent \textbf{Пример.} \(\displaystyle \{x_n\} = \left\{\frac{1}{n}\right\}\).
 
+\begin{lemma}
+    Фундаментальная последовательность ограничена.
+\end{lemma}
 
+\begin{theorem}[Критерий Коши для последовательностей\noindent]
+    \noindent Последовательность сходится \(\iff\) последовательность фундаментальная. 
+\end{theorem}
+\noindent \underline{Доказательство.}
+\begin{enumerate}
+    \item Необходимость (последовательность сходится \(\implies\) она фундаментальная).
+    \begin{enumerate}
+        \item Пусть \(\lim\limits_{n \to \infty} x_n = A\). То есть \(\displaystyle \forall \varepsilon > 0\
+        \exists N(\varepsilon) \in \mathbb{N}: \forall n > N \left\vert x_n - A \right\vert < \frac{\varepsilon}{2}\).
+        \item Из \({(1)}\) получим, что \(\displaystyle \forall n, m \in \mathbb{N}\ \left\vert x_n  - x_m \right\vert = \left\vert (x_n - a) + (a - x_m) \right\vert \leq \left\vert x_n - a \right\vert + \left\vert x_m  - a \right\vert < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} < \varepsilon \implies \{x_n\}\) фундаментальная.  
+    \end{enumerate}
+    \item Достаточность (последовательность фундаментальная \(\implies \) она сходится).
+    \begin{enumerate}
+        \item Пусть \(x_n\) фундаментальная \(\implies\) (по лемме 2) \(\{x_n\}\) ограничена.
+        \item По теореме Больцано-Вейерштрасса из \(\{x_n\}\) можно выделить подпоследовательность \(\{x_{k_n}\}\) такую, что \( \lim\limits_{n \to \infty} x_{k_n} = A\).
+        \item Докажем, что \( \lim\limits_{n \to \infty} x_{k_n} = A\). Зададим произвольное \(\varepsilon > 0\). Рассмотрим \(\varepsilon\) и \(\displaystyle \frac{\varepsilon}{2}\) окрестности точки \(A\).
+        \item Начиная с некоторого номера \(N_1\) все члены подпоследовательности \(x_{k_n}\) лежат в \(\displaystyle \frac{\varepsilon}{2}\)-окрестности точки \(A\).
+        \item Начиная с некоторого номера \(N_2\) все члены последовательности отстоят друг от друга не более, чем на \(\displaystyle \frac{\varepsilon}{2}\) (так как \(\{x_n\}\) фундаментальна).
+        \item Положим \(N = \max\left\{N_1, N_2\right\}\). Тогда \(\forall n > N\ x_n \in U_{\varepsilon}(A) \implies \lim\limits_{n \to \infty} x_n = A\).  
+    \end{enumerate}
+\end{enumerate}
+\noindent \textbf{Пример.} Докажем с помошью критерия Коши, что \(\{x_n\} = \{\sin(n)\}\) расходится.
+\begin{enumerate}
+    \item Предоложим, что \(\{x_n\}\) фундаментальная. Тогда \(\forall \varepsilon > 0\ \exists N(\varepsilon) \in \mathbb{N}: \forall n, m > N\ \left\vert \sin(m) - \sin(n) \right\vert < \varepsilon\).
+    \item Пусть \(m = n + 2\), тогда \(\displaystyle \left\vert 2\sin(1)\cos(n + 1) \right\vert < \varepsilon \implies \left\vert \cos(n + 1) \right\vert < \frac{\varepsilon}{2\sin(1)} \implies \{\cos(n)\}\) --- бесконечно малая последовательность.
+    \item \(\displaystyle \cos(n + 1) = \cos(n)\cos(1) - \sin(n)\sin(1) \implies \sin(n) = \frac{\cos(n)\cos(1) - \cos(n + 1)}{\sin(1)} \implies \{\sin(n)\}\) --- бесконечно малая последовательность.
+    \item 
+    \(\begin{cases}
+        \sin(n) \to 0 & \text{при}\ n \to \infty\\
+        \cos(n) \to 0 & \text{при}\ n \to \infty\\
+    \end{cases} \implies \) противоречие \(\left(\cos(n) = \sqrt{1 - \sin^2(n)}\right)\).  
+\end{enumerate}
+
+\section{Предел функции по Гейне}
+Пусть функция \(f\) определена на \(X\), и \(a\) --- предельная точка \(X\).
+
+\begin{definition}[Предел по Коши\noindent]
+    \noindent Число \(b\) называется пределом функции \(f\) при \(x \to a\), если
+    \[
+        \forall \varepsilon > 0\ \exists \delta > 0: \forall x \in \overset{\dt}{U}_{\delta}(a) \implies \left\vert f(x) - b \right\vert < \epsilon
+    \]   
+\end{definition}
+
+\begin{definition}[Предел функции по Гейне\noindent]
+    \noindent Число \(b\) называется пределом функции \(f\) при \(x \to a\), если \(\forall\) последовательности аргументов \(\{x_n\}\), сходящейся к \(a\) (\(x_n \neq a\)) последовательность значений функции \(\{f(x_n)\}\) сходится к \(b\).    
+\end{definition}
+
+\begin{theorem}
+    Определения 2 и 3 эквивалентны.
+\end{theorem}
+\noindent \textbf{Пример.} Легко проверить при помощи определения по Гейне, что \(\nexists \lim\limits_{n \to \infty} \cos(n)\).
+
+\section{Критерий Коши для функций}
+
+\begin{definition}
+    Говорят, что \(f(x)\) удовлетворяет в точке \(a\) условию Коши, если
+    \[
+        \forall \varepsilon > 0\ \exists \delta > 0: \forall x^{\prime}, x^{\prime\prime}: \left\vert x^{\prime} - a \right\vert < \delta,\ \left\vert x^{\prime\prime} - a \right\vert < \delta \implies \left\vert f(x^{\prime}) -f(x^{\prime\prime}) \right\vert < \varepsilon 
+    \]  
+\end{definition}
+
+\begin{theorem}[Критерий Коши для функций\noindent]
+    \noindent \(\exists \lim\limits_{x \to a} f(x) \iff f(x)\) удовлетворяет условию Коши. 
+\end{theorem}
+\noindent \underline{Доказательство.}
+\begin{enumerate}
+    \item Необходимость.
+    \begin{enumerate}
+        \item Пусть \(\lim\limits_{x \to a} f(x) = b\). Тогда \(\displaystyle \forall \varepsilon > 0\ \exists \delta > 0: \forall x \in \overset{\dt}{U}_{\delta}(a) \implies \left\vert f(x) - b \right\vert < \frac{\varepsilon}{2}\).
+        \item \(\displaystyle \left\vert f(x^{\prime}) - f(x^{\prime\prime}) \right\vert = \left\vert (f(x^{\prime}) - b) + (b - f(x^{\prime\prime})) \right\vert \leq \left\vert f(x^{\prime}) - b \right\vert + \left\vert f(x^{\prime\prime}) -b \right\vert < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} < \varepsilon\)  
+    \end{enumerate}
+    \item Достаточность на лекции не доказывалась.
+\end{enumerate}
+
+\section{Теоремы о непрерывных функциях}
+
+\begin{theorem}
+    \(f(x)\) непрерывна в точке \(a \implies f(x)\) ограничена в \(U(a)\).  
+\end{theorem}
+\noindent \underline{Замечание:} доказательство вытекает непосредственно из определения непрерывности функции.
+
+\begin{theorem}[1-ая теорема Вейерштрасса\noindent]
+    \noindent Непрерывная на отрезке функция ограничена на этом отрезке.
+\end{theorem}
 \end{document}
