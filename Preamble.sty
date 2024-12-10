@@ -1,6 +1,21 @@
 % Page layout
 \usepackage[left=15mm, top=10mm, right=15mm, bottom=20mm]{geometry}
-\usepackage{setspace}
+
+\newenvironment{changemargin}[2]{%
+\begin{list}{}{%
+\setlength{\topsep}{0pt}%
+\setlength{\leftmargin}{#1}%
+\setlength{\rightmargin}{#2}%
+\setlength{\listparindent}{\parindent}%
+\setlength{\itemindent}{\parindent}%
+\setlength{\parsep}{\parskip}%
+}%
+\item[]}{\end{list}}
+\renewcommand*{\arraystretch}{1.5}
+
+% Tables
+\usepackage{float}
+\usepackage{longtable}
 
 % Custom commands
 \usepackage{graphicx}
@@ -19,6 +34,7 @@
 \usepackage{asymptote}
 \usepackage{subcaption}
 \usepackage{subfig}
+% \usepackage[edges]{forest}
 
 % Language
 \usepackage[utf8]{inputenc}
@@ -27,3 +43,13 @@
 
 % Color
 \usepackage{xcolor}
+
+% Subfiles
+\usepackage{hyperref}
+\hypersetup{pdfborder=0 0 0}
+\hypersetup{
+    colorlinks = false,
+    linktoc = all,
+}
+
+% \usepackage{subfiles}
