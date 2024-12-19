@@ -1,0 +1,267 @@
+\documentclass{article}
+
+\usepackage{../definition}
+\usepackage{../theorem}
+\usepackage{../preamble}
+
+\begin{document}
+
+\section{\centering}
+\noindent\fbox{%
+    \parbox{\textwidth}{
+        Расскажите о понятиях множества и функции (отображения). Что такое инъекция, сюръекция, биекция, обратное отображение? Расскажите об операциях с множествами.
+        Приведите примеры.
+    }
+}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Множество} (набор неупорядоченных элементов) --- математическая абстракция, задающаяся набором аксиом (например, аксиомами Цермело-Френкеля).
+    \item \textbf{Отображение} из \(X\) в \(Y\) --- это бинарное отношение \(\mathcal{R}\) между \(X\) и \(Y\) такое, что \((x\ \mathcal{R}\ y_1) \land (x\ \mathcal{R}\ y_2) \implies (y_1 = y_2)\).
+    \item \textbf{Сюръекция} из \(X\) в \(Y\) --- это отображение \(f: X \to Y\) такое, что \(\forall y \in Y\ \exists x \in X: f(x) = y\).
+    \item \textbf{Инъекция} из \(X\) в \(Y\) --- это отображение \(f: X \to Y\) такое, что \((f(x_1) = f(x_2)) \implies (x_1 = x_2)\).
+    \item \textbf{Биекция} из \(X\) в \(Y\) --- это отображение \(f: X \to Y\), являющееся одновременно инъективным и сюръективным.
+    \item \textbf{Отображение} \(f^{-1}: B \to A\) называется обратным для отображения \(f: A \to B\), если \(
+    \begin{cases}
+        \forall a \in A & f^{-1}(f(a)) = a\\
+        \forall b \in B & f(f^{-1}(b)) = b 
+    \end{cases}
+    \).   
+\end{itemize}
+
+%────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+\section{\centering}
+\noindent\fbox{%
+    \parbox{\textwidth}{
+        Расскажите об аксиомах поля действительных чисел: сформулируйте аксиомы сложения, умножения, порядка, аксиомы связи сложения (умножения) и порядка, и аксиому полноты (непрерывности).
+    }
+}\\[0.2cm]
+Множество \(\mathbb{R}\) любой природы называется полем действительных чисел, если для его элементов выполнен следующий комплекс условий:
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Аксиомы сложения.}
+    \begin{enumerate}[label=$\arabic*_{+}$]
+        \item Определена внутренняя бинарная операция \(+: \mathbb{R} \times \mathbb{R} \to \mathbb{R}\).
+        \item Операция \(+\) ассоциотивна \(\forall a, b, c \in \mathbb{R}\ (a + b) + c = a + (b + c)\).
+        \item Существует 0 (нейтральный элемент) (\(\exists 0 \in \mathbb{R}: \forall a \in \mathbb{R}\ 0 + a = a + 0 = a\)).
+        \item Для каждого элемента существует противоположный ему элемент (\(\forall a \in \mathbb{R}\ \exists (-a) \in \mathbb{R}: a + (-a) = (-a) + a = 0\)).
+        \item Операция \(+\) коммутативна (\(\forall a, b \in \mathbb{R}\ a + b = b + a\)). 
+    \end{enumerate}
+    \item \textbf{Аксиомы умножения.}
+    \begin{enumerate}[label=$\arabic*_{\dt}$]
+        \item Определена внутренняя бинарная операция \(\dt: \mathbb{R} \times \mathbb{R} \to \mathbb{R} \).
+        \item Операция \(\dt\) ассоциотивна \(\forall a, b, c \in \mathbb{R}\ (a \dt b) \dt c = a \dt (b \dt c)\).
+        \item Существует 1 (нейтральный элемент) (\(\exists 1 \in \mathbb{R}: \forall a \in \mathbb{R}\ 1 \dt a = a \dt 1 = a\)).
+        \item Для каждого элемента существует противоположный ему элемент (\(\forall a \in \mathbb{R}\ \exists a^{-1} \in \mathbb{R}: a \dt a^{-1} = a^{-1} \dt a = 1\)).
+        \item Операция \(\dt\) коммутативна (\(\forall a, b \in \mathbb{R}\ a \dt b = b \dt a\)).
+    \end{enumerate}
+    \item Операция умножения \textbf{дистрибутивна} относительно операции сложения (\(\forall a, b, c \in \mathbb{R}\ a \dt (b + c) = a \dt b + a \dt c\)).
+    \item \textbf{Аксиомы порядка.} 
+    \begin{enumerate}[label=$\arabic*_{\leq}$]
+        \item Между элементами \(\mathbb{R}\) есть отношение порядка \(\leq\), то есть \(\forall x, y \in \mathbb{R}\) либо выполнено \(x \leq y\), либо нет.
+        \item \(\forall x \in \mathbb{R}\ x \leq x\). 
+        \item \((x \leq y) \land (y \leq x) \implies y = x\).
+        \item \((x \leq y) \land (y \leq z) \implies x \leq z\).
+        \item \(\forall x, y \in \mathbb{R} \implies \) 
+        \(\left[ 
+            \begin{gathered}
+                x \leq y\\
+                y \leq x\\
+            \end{gathered}
+        \right.\)   
+    \end{enumerate}
+    \item \textbf{Связь сложения и порядка:} если \(x, y, z \in \mathbb{R}\) и \(x \leq y\), то \(x + z \leq y + z\).
+    \item \textbf{Свзяь умножения и порядка:} если \(x, y \in \mathbb{R}\) и \(x \geq 0 \land y \geq 0\), то \(x \dt y \geq 0\).      
+    \item \textbf{Аксиома полноты:} если \(X\) и \(Y\) -- непустые подмножества \(\mathbb{R}\), причем \(\forall x \in X,\ \forall y \in Y\ x \leq y\), то \(\exists c \in \mathbb{R}: x \leq c \leq y\).     
+\end{itemize}
+
+%────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+\section{\centering}
+\noindent\fbox{%
+    \parbox{\textwidth}{
+        Докажите, что в множестве действительных чисел:
+        \begin{enumerate}
+            \item имеется только один нулевой
+            элемент;
+            \item у каждого элемента имеется единственный противоположный элемент;
+            \item уравнение \(a + x = b\) имеет, и притом единственное, решение \(x = b + (-a)\).
+        \end{enumerate}
+    }
+}
+\begin{enumerate}[leftmargin=*]
+    \item Если \(0_1\) и \(0_2\) --- нули в \(\mathbb{R}\), то \(0_1 = 0_1 + 0_2 = 0_2 + 0_1 = 0_2\).  
+    \item Если \(x_1, x_2 \in \mathbb{R}\) --- противоположные к \(x \in \mathbb{R}\), то \(x_1 = x_1 + 0 = x_1 + (x + x_2) = (x_1 + x) + x_2 = 0 + x_2 = x_2\). 
+    \item \((a + x = b) \iff ((x + a) + (-a) = b + (-a)) \iff (x + (a + (-a)) = b + (-a)) \iff (x + 0 = b + (-a)) \iff (x = b + (-a))\).
+\end{enumerate}
+
+%────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+\section{\centering}
+\noindent\fbox{%
+    \parbox{\textwidth}{
+        Расскажите о методе математической индукции.
+        Докажите неравенство Бернулли.
+        Расскажите о биноме Ньютона.
+    }
+}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Принцип математической индукции:}
+    пусть для последовательности утверждений \(A_1,\ A_2,\ A_3,\ \dots\ A_n,\ \dots\) верны утверждения:
+    \begin{itemize}
+        \item База индукции: \(A_1\) истинно.
+        \item Шаг индукции: \(A_n\) истинно \(\implies A_{n + 1}\) истинно для любого \(n\)   
+    \end{itemize}
+    \noindent Тогда \(A_n\) истинно для любого \(n\).
+    \item \textbf{Неравенство Бернулли:}
+    для \(x \in \mathbb{R},\ n \in \mathbb{N}\) таких, что \(x \geq -1 \land n \geq 1\), верно, что \((1 + x)^n \geq 1 + nx\).\\
+    \textbf{Доказательство по индукции.}
+    \begin{itemize}
+        \item База: пусть (n = 1), тогда \(1 + x = 1 + x\).
+        \item Шаг: пусть неравенство верно для некоторого \(n\), докажем, что оно верно и для \(n + 1\): \[(1 + x)^{n + 1} = (1 + x)(1 + x)^n \geq (1 + x)(1 + nx) \geq 1 + nx + x = 1 + (n + 1)x\]. 
+    \end{itemize}
+    \item \textbf{Бином Ньютона:} для произвольных \(a, b \in \mathbb{R},\ n \in \mathbb{N}\) верно, что \(\displaystyle (a + b)^n = \sum\limits_{k = 0}^{n} \binom{n}{k} a^k b^{n - k}\).  
+\end{itemize}
+
+%────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+\section{\centering}
+\noindent\fbox{%
+    \parbox{\textwidth}{
+        Расскажите об ограниченных множествах вещественных чисел. Дайте два определения верхней и нижней грани множества \(E \subset \mathbb{R}\). Докажите теорему о существовании и единственности верхней (нижней) грани. Приведите примеры.
+    }
+}
+\begin{itemize}[leftmargin=*]
+    \item
+    Некоторое подмножество \(E \subset \mathbb{R}\) \textbf{ограничено сверху} (снизу), если \(\exists c \in \mathbb{R}: \forall x \in E\ x \leq c\ (c \leq x)\). При этом число c называется верхней границей (нижней границей) множества X.\\
+    \item Множество ограниченное сверху и снизу называется \textbf{ограниченным}.
+    \item
+    Наибольшее (наименьшее) из чисел, ограничивающих множество \(E\) сверху, называется \textbf{точной верхней (нижней) гранью} \(E\) (обозначается как \(\sup{E}\ (\inf{X})\)).
+    \item
+    Всякое непустое ограниченное сверху множество \(E \subset \mathbb{R}\) имеет единственную точную верхнюю грань.\\
+    \textbf{Доказательство}.
+    \begin{enumerate}
+        \item Предположим, что есть две минимальных верхних грани \(x\) и \(y\), в силу аксиомы антисимметричности \((x \leq y) \land (y \leq x) \implies x = y\).
+        \item Положим \(Y = \{ y \in \mathbb{R}: \forall x \in E \implies (x \leq y)\}\).
+        \item По условию \(Y\) и \(E\) не пусты.
+        \item Тогда по аксиоме полноты \(\exists c \in \mathbb{R}: \forall x \in E,\ \forall y \in Y \implies (x \leq c \leq y)\). Другими словами, такое число \(c\) (существование которого гарантировано аксиомой полноты) является для \(E\) мажорантой, а для \(Y\) минорантой. 
+        \item Будучи мажорантой \(E\), \(c \in Y\); в то же время, как миноранта \(Y\), \(c = \min{Y} = \sup{E}\).
+    \end{enumerate}
+\end{itemize}
+
+%────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+\section{\centering}
+\noindent\fbox{%
+    \parbox{\textwidth}{
+        Дайте определения ограниченной (сверху, снизу) функции; верхней и нижней грани функции; монотонной функции; суперпозиции функций. Расскажите об обратной функции. Приведите примеры.
+    }
+}
+\begin{itemize}
+    \item Функция \(f: X \to Y\) называется \textbf{ограниченной сверху} (снизу) на множестве \(E \subset X\), если \(\exists M \in E: \forall x \in X\ f(x) \leq M\ (f(x) \geq m)\). При этом число \(M\) называется \textbf{верхней (нижней) гранью} функции \(f(x)\) на множестве \(E\).      
+    \item Функция \(f: X \to Y\) называется \textbf{ограниченной} на множестве \(E \subset X\), если \(\exists A \in E: \forall x \in X\ |f(x)| \leq  A\).   
+    \item Функция \(f: X \to Y\) называется \textbf{монотонной}, если
+    \[
+        \left[
+            \begin{gathered}
+                \forall x_1, x_2 \in \mathbb{X}\ x_1 < x_2 \iff  f(x_1) \leq f(x_2)\\
+                \forall x_1, x_2 \in \mathbb{X}\ x_1 < x_2 \iff  f(x_1) \geq f(x_2)
+            \end{gathered}
+        \right.
+    \]
+    \item Пусть даны две функции \(f: A \to B\), \(g: B \to C\). Их \textbf{композицией} \(f \circ g\) называется функция \(g(f(a))\).
+    \item Если функция \(f: A \to B\) биективна, то к ней можно определить \textbf{обратную} функцию \(f^{-1}: B \to A\): \(
+    \begin{cases}
+        \forall a \in A & f^{-1}(f(a)) = a\\
+        \forall b \in B & f(f^{-1}(b)) = b 
+    \end{cases}
+    \). 
+\end{itemize}
+
+%────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+\section{\centering}
+\noindent\fbox{%
+    \parbox{\textwidth}{
+        Дайте определение числовой последовательности. Что такое монотонная
+        последовательность? Что такое ограниченная (сверху, снизу) последовательность? Приведите примеры. Исследуйте на монотонность и ограниченность последовательность \(\displaystyle x_n = \frac{n + 2}{2n + 1}\). 
+    }
+}
+\begin{itemize}
+    \item
+    \textbf{Числовая последовательность} множества \(E\) --- это функция вида \(f: \mathbb{N} \to E\) .
+    \item Числовая последовательность \(\{x_n\}\)  называется \textbf{монотонной}, если
+    \[
+        \left[
+            \begin{gathered}
+                \forall n_1, n_2 \in \mathbb{N}\ n_1 < n_2 \iff  x_{n_1} \leq x_{n_2}\\
+                \forall n_1, n_2 \in \mathbb{N}\ n_1 < n_2 \iff  x_{n_1} \geq x_{n_2}
+            \end{gathered}
+        \right.
+    \]
+    \item Числовая последовательность \(\{x_n\}\) множества \(E\)  называется ограниченной сверху (снизу), если 
+    \[
+        \exists A \in E: \forall n \in \mathbb{N}\ x_n \leq A\ (x_n \geq A)
+    \].
+    \item Докажем, что \(\displaystyle \frac{x_{n + 1}}{x_{n}} < 1\).
+    \[
+        \frac{x_{n + 1}}{x_{n}} = \frac{(n + 3)(2n + 1)}{(2n + 3)(n + 2)} = \frac{2n^2 + 7n + 3}{2n^2 + 7n + 6} < 1
+    \]
+\end{itemize}
+
+%────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+\section{\centering}
+\noindent\fbox{%
+    \parbox{\textwidth}{
+        Дайте определение пределов \(\lim\limits_{n \to \infty} x_n = A\), \(\lim\limits_{n \to \infty} x_n = \infty,\ +\infty, -\infty\).  Приведите примеры. Докажите теорему о единственности конечного предела последовательности. Сформулируйте критерий Коши сходимости последовательности. Докажите, что если последовательность сходится, то она является фундаментальной.
+    }
+}
+\begin{itemize}
+    \item \(\lim\limits_{n \to \infty} x_n = A \iff \forall \varepsilon > 0\ \exists N(\varepsilon) \in \mathbb{N}: \forall n > N\ \left\vert x_n - A \right\vert < \varepsilon\).
+    \item \(\lim\limits_{n \to \infty} x_n = \infty \iff \forall M > 0\ \exists N(\varepsilon) \in \mathbb{N}: \forall n > N\ \left\vert x_n \right\vert > M\).
+    \item \(\lim\limits_{n \to \infty} x_n = +\infty \iff \forall M > 0\ \exists N(\varepsilon) \in \mathbb{N}: \forall n > N\ x_n > M\).
+    \item \(\lim\limits_{n \to \infty} x_n = -\infty \iff \forall M > 0\ \exists N(\varepsilon) \in \mathbb{N}: \forall n > N\ x_n < -M\).
+    \item Последовательность \(\{x_n\}\) множества \(E\) может иметь только один конечный предел.\\
+    \textbf{Доказательство.}
+    \begin{enumerate}
+        \item Пусть у последовательности есть два предела: \(A\) и \(B\).
+        \item По определению
+        \(\begin{cases}
+            \forall \varepsilon > 0\ \exists N_1(\varepsilon) \in \mathbb{N}: \forall n > N_1\ \left\vert x_n - A \right\vert < \varepsilon\\
+            \forall \varepsilon > 0\ \exists N_2(\varepsilon) \in \mathbb{N}: \forall n > N_2\ \left\vert x_n - B \right\vert < \varepsilon
+        \end{cases}\)
+        \item Положим \(N = \max\{N_1, N_2\}\). Тогда \(\forall n > N\ \left\vert B - A \right\vert \leq \left\vert x_n - B \right\vert + \left\vert x_n - A \right\vert < 2\varepsilon \implies \left\vert B - A \right\vert \to 0 \implies B = A\).  
+    \end{enumerate}  
+    \item Числовая последовательность \(\{x_n\}\) называется \textbf{фундаментальной}, если
+    \[
+        \forall \varepsilon > 0\ \exists N(\varepsilon) \in \mathbb{N}: \forall n, m > N\ \left\vert x_{m} - x_{n} \right\vert < \varepsilon
+    \]
+    \item \textbf{Критерий Коши:} Последовательность сходится \(\iff\) последовательность фундаментальная.\\
+    \textbf{Доказательство.}
+    \begin{enumerate}
+    \item \((1) \implies (2)\)
+    \begin{enumerate}
+        \item Пусть \(\lim\limits_{n \to \infty} x_n = A\). То есть \(\displaystyle \forall \varepsilon > 0\
+        \exists N(\varepsilon) \in \mathbb{N}: \forall n > N \left\vert x_n - A \right\vert < \frac{\varepsilon}{2}\).
+        \item Из \({(1)}\) получим, что \(\displaystyle \forall n, m \in \mathbb{N}\ \left\vert x_n  - x_m \right\vert = \left\vert (x_n - a) + (a - x_m) \right\vert \leq \left\vert x_n - a \right\vert + \left\vert x_m  - a \right\vert < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} < \varepsilon \implies \{x_n\}\) фундаментальная.  
+    \end{enumerate}
+    \item \((2) \impliedby (1)\)
+    \begin{enumerate}
+        \item Пусть \(x_n\) фундаментальная \(\implies\) (по лемме 2) \(\{x_n\}\) ограничена.
+        \item По теореме Больцано-Вейерштрасса из \(\{x_n\}\) можно выделить подпоследовательность \(\{x_{k_n}\}\) такую, что \( \lim\limits_{n \to \infty} x_{k_n} = A\).
+        \item Докажем, что \( \lim\limits_{n \to \infty} x_{k_n} = A\). Зададим произвольное \(\varepsilon > 0\). Рассмотрим \(\varepsilon\) и \(\displaystyle \frac{\varepsilon}{2}\) окрестности точки \(A\).
+        \item Начиная с некоторого номера \(N_1\) все члены подпоследовательности \(x_{k_n}\) лежат в \(\displaystyle \frac{\varepsilon}{2}\)-окрестности точки \(A\).
+        \item Начиная с некоторого номера \(N_2\) все члены последовательности отстоят друг от друга не более, чем на \(\displaystyle \frac{\varepsilon}{2}\) (так как \(\{x_n\}\) фундаментальна).
+        \item Положим \(N = \max\left\{N_1, N_2\right\}\). Тогда \(\forall n > N\ x_n \in U_{\varepsilon}(A) \implies \lim\limits_{n \to \infty} x_n = A\).  
+    \end{enumerate}
+    \end{enumerate}
+\end{itemize}
+
+%────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+\section{\centering}
+\noindent\fbox{%
+    \parbox{\textwidth}{
+        Докажите, что всякая последовательность, имеющая конечный предел, ограничена. Покажите на примере, что обратное утверждение неверно. Докажите теорему Вейерштрасса о пределе монотонной последовательности.
+    }
+}
+\begin{itemize}
+    \item Последовательность \(\{x_n\}\) имеет конечный предел \(A\) \(\implies\) она ограничена.\\
+    \textbf{Доказательство.}
+    \begin{enumerate}
+        \item Положим \(\varepsilon = 1\). Тогда по определению \(\exists N \in \mathbb{N}: \forall n > N\ \left\vert x_n - A \right\vert < 1 \implies \left\vert x_n \right\vert < \left\vert A \right\vert + 1 \).
+        \item Возьмем \(M > \max\{\left\vert x_1 \right\vert, \dots \left\vert x_n \right\vert, \left\vert A \right\vert + 1\}\). Получии, что \(\forall n \in \mathbb{N}\ \left\vert x_n \right\vert < M\).  
+    \end{enumerate}
+\end{itemize}
+\end{document}

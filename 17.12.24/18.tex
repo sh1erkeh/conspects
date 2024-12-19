@@ -1,0 +1,106 @@
+\documentclass{article}
+
+\usepackage{../definition}
+\usepackage{../theorem}
+\usepackage{../preamble}
+
+\title{Лекция 18}
+\author{17 декабря 2024}
+\date{}
+
+\begin{document}
+\maketitle
+  
+\begin{theorem}[Коши]
+    Пусть функции \(f(x)\) и \(g(x)\)
+    \begin{enumerate}
+        \item определены и непрерывны на \({[a, b]}\).
+        \item дифференцируемы в \({(a, b)}\).
+        \item \(\forall x \in (a, b): g^{\prime}(x) \neq 0\)    
+    \end{enumerate}
+    Тогда \(\exists c \in (a, b):\) 
+    \[
+        \frac{f(b) - f(a)}{g(b) - g(a)} = \frac{f^{\prime}(c)}{g^{\prime}(c)}
+    \]
+\end{theorem}
+\noindent \underline{Доказательство.}
+\begin{enumerate}
+    \item Рассмотрим вспомогательную функцию \(\displaystyle F(x) = f(x) - \frac{f(b) - f(a)}{g(b) - g(a)} \cdot (g(x) - g(a))\).
+    \item \(F(x)\) определена и непрерывна на \({[a, b]}\), дифференцируема на \((a, b)\) и \(F(a) = F(b) = f(a) \implies \) для \(F(x)\) выполнены все условия теоремы Ролля.
+    \item \(\displaystyle \exists c \in (a, b): F^{\prime}(c) = 0 \iff f^{\prime}(c) - \frac{f(b) - f(a)}{g(b) - g(a)} \cdot g^{\prime}(c) = 0 \iff \frac{f(b) - f(a)}{g(b) - g(a)} = \frac{f^{\prime}(c)}{g^{\prime}(c)}\).  
+\end{enumerate}
+\noindent \underline{Следствие 1}: если положить \(g(x) = x\), то \(g(a) = a,\ g(b) = b,\ g^{\prime}(c) = 1 \implies f(b) - f(a) = f^{\prime}(c)(b - a)\) (формула Лашранжа).
+
+\begin{claim}[Формула конечных приращений]
+    Возьмем \(b = x_0 + \Delta x,\ a = x_0,\ \xi \in [a, b]\). Тогда \(f(x_0 + \Delta x) -f(x_0) = f^{\prime}(\xi) \Delta x\), \(\xi = x_0 + (\xi -x _0) = x_0 + \Theta \Delta x\), где \(0< \Theta < 1 \implies \)
+    \[\at{\Delta f}{x_0} = f(x_0 + \Delta x) - f(x_0) = f^{\prime}(x_0 + \Theta \Delta x) \Delta x\].    
+\end{claim}
+
+\begin{theorem}
+    Пусть дана \(f: \mathbb{R}  \supseteq E \to \mathbb{R}\).
+    \((f \in D(E)) \land (\forall x \in E\ f^{\prime}(x) = 0) \implies f(x) = const\).
+\end{theorem}
+\noindent \underline{Доказательство.}
+\begin{enumerate}
+    \item Пусть \(x_0\) --- фиксированная точка, а \(x\) --- произвольная точка из \(E\).
+    \item По формуле Лагранжа \(f(x) - f(x_0) = f^{\prime}(c)(x - x_0) = 0\), так как \(f^{\prime}(c) = 0\).
+    \item Получим, что \(\forall x \in E\ f(x) = f(x_0) = const\).   
+\end{enumerate}
+
+\begin{theorem}[Необходимое и достаточное условие монотонности]
+    (\(f: E \to \mathbb{R}\) не убывает на E) \(\land\ (f \in D(E))\) \(\iff \forall x \in E\ f^{\prime}(x) \geq 0\) 
+\end{theorem}
+\noindent \underline{Доказательство.}
+\begin{enumerate}
+    \item \((1) \impliedby (2)\)
+    \begin{enumerate}
+        \item Рассмотрим \(x_1, x_2 \in E: x_2 > x_1\).
+        \item По формуле Лагранжа \(f(x_2) - f(x_1) = f^{\prime} (\xi)(x_2 - x_1)\). \(f^{\prime}(\xi) \geq 0\ \land\ x_2 > x_1 \implies f(x_2) - f(x_2) \geq 0\).  
+    \end{enumerate}
+    \item \((1) \implies (2)\)
+    \begin{enumerate}
+        \item Предположим, что \(\exists c \in E: f^{\prime}(c) < 0\). Тогда по теореме 4 функция в точке \(c\) убывает \(\iff \exists U(c): f(x) < f(c)\) при \(x > c\) и \(f(x) > f(c)\) при \(x < c\).
+        \item Первое из неравенств противоречит условию неубывания \(f(x)\). Получено противоречие.  
+    \end{enumerate} 
+\end{enumerate}
+\noindent \underline{Замечание:} для строго возрастания достаточно, но не необходимо, чтобы \(f^{\prime}(x) > 0\). 
+
+\begin{claim}
+    Функция возрастает в точке \(c\) \(\centernot\implies\) функция возрастает в \(U(c)\) 
+\end{claim}
+\noindent \textbf{Пример.} \(\displaystyle f(x) =
+\begin{cases}
+    \displaystyle x + x^2 \sin \left(\frac{1}{x}\right) & \text{если}\ x \neq 0\\
+    0 & \text{если}\ x = 0  
+\end{cases}\ f^{\prime}(0) = 1\), но \(f\) не возрастает ни в какой окрестности нуля.
+
+\begin{claim}
+    \(f(x)\) возрастает на некотором интервале \(\iff f(x)\) возрастает в каждой точке этого интервала
+\end{claim}
+
+\begin{theorem}[Достаточное условие равномерной непрерывности]
+    \(f: E \to \mathbb{R}\) имеет на \(E\) ограниченную производную \(\implies f(x)\) равномерно непрерывна на \(E\). 
+\end{theorem}
+\noindent \underline{Доказательство.}
+\begin{enumerate}
+    \item Пусть \(\left\vert f^{\prime}(x) \right\vert \leq M\ \forall x \in E\). Зададим произвольное \(\varepsilon > 0\) и выберем \(\displaystyle \delta = \frac{\varepsilon}{M}\). 
+    \item \(\displaystyle \forall x^{\prime}, x^{\prime\prime}: \left\vert x^{\prime\prime} - x^{\prime} \right\vert < \delta = \frac{\varepsilon}{M} \implies \left\vert f(x^{\prime\prime}) - f(x^{\prime}) \right\vert = \left\vert f^{\prime}(\xi)(x^{\prime\prime} - x^{\prime}) \right\vert \leq M\left\vert x^{\prime\prime} - x^{\prime} \right\vert < M \delta < \varepsilon\) 
+\end{enumerate}
+
+\begin{theorem}[Правило Лопиталя]
+    Пусть даны две функции \(f(x)\) и \(g(x)\) и выполнены следующие условия:
+    \begin{enumerate}
+        \item \(f(x) \to 0\) и \(g(x) \to 0\) при \(x \to a\).
+        \item \(f(x)\) и \(g(x)\) определены и дифференцируемы в \(\overset{\dt}{U}(a)\).
+        \item \(\forall x \in \overset{\dt}{U}(a)\ g^{\prime}(x) \neq 0\)
+        \item \(\displaystyle \exists \lim\limits_{x \to a} \frac{f^{\prime}(x)}{g^{\prime}(x)}\) 
+    \end{enumerate} 
+    Тогда \[\exists \lim\limits_{x \to a} \frac{f(x)}{g(x)} = \lim\limits_{x \to a} \frac{f^{\prime}(x)}{g^{\prime}(x)}\] 
+\end{theorem}
+\noindent \underline{Доказательство.}
+\begin{enumerate}
+    \item Положим \(f(a) = g(a) = 0\). В результате \(f\) и \(g\) станут непрерывными в \(U(a)\).   
+    \item Пусть \(x \neq a\) --- произвольная точка из \(U(a)\). По формуле Коши \(\displaystyle \frac{f(x) - f(a)}{g(x) - g(a)} = \frac{f^{\prime}(\xi)}{g^{\prime}(\xi)}\), где \(\xi \in (a, x)\).
+    \item \(\displaystyle f(a) = g(a) = 0 \implies \frac{f(x)}{g(x)} = \frac{f^{\prime}(\xi)}{g^{\prime}(\xi)} \implies \lim\limits_{x \to a} \frac{f(x)}{g(x)} = \lim\limits_{x \to a} \frac{f^{\prime}(x)}{g^{\prime}(x)}\) (так как \(\xi \to a\)).
+\end{enumerate}
+\end{document}

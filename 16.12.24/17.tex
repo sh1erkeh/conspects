@@ -1,0 +1,121 @@
+\documentclass{article}
+
+\usepackage{../definition}
+\usepackage{../theorem}
+\usepackage{../preamble}
+
+\title{Лекция 17}
+\author{16 декабря 2024}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{theorem}[1-ая теорема Вейерштрасса\noindent]
+    \noindent Функция непрерывная на отрезке ограничена на этом отрезке.
+\end{theorem}
+\noindent \underline{Доказательство.}
+\begin{enumerate}
+    \item Предположим, что утверждение теоремы не верно, тогда \(\forall A > 0\ \exists x \in {[a, b]}: f(x) > A\).
+    \item Рассмотрим последовательность \(A_n = n \implies x_n \in {[a, b]}: f(x_n) > n\).
+    \item По теореме Больцано-Вейерштрасса можно выделить \(\{x_{n_k}\} \to c \in {[a, b]}\), причем \(f(x_{n_k}) > k \implies f(x_{n_k})\) расходится.
+    \item С другой стороны, в силу непрерывности \(\lim\limits_{k \to +\infty } f(x_{n_k}) = f(c)\).
+    \item Получено противоречие.
+\end{enumerate}
+\noindent \underline{Замечание:} для интервала теорема 1 неверна.
+
+\begin{claim}
+    Пусть функция \(f(x)\) определена и ограничена сверху на \(X\).
+    Тогда \(\displaystyle \exists \sup_{X}f(x)\).
+    Если \(\displaystyle \exists x_1 \in X: f(x_1) = \sup_{X}f(x)\), то говорят, что \(f(x)\)
+    достигает свою верхнюю.  
+\end{claim}
+
+\begin{theorem}[2-ая теорема Вейерштрасса]
+    Непрерывная на отрезке функция достигает на этом отрезке свои точные грани.
+\end{theorem}
+\noindent \underline{Доказательство.}
+\begin{enumerate}
+    \item Пусть \(f(x)\) непрерывна на \({[a, b]}\).
+    \item Предположим, что утверждение теоремы неверно: \(\displaystyle \forall x \in {[a, b]}\ f(x) < M = \sup_{[a, b]}f(x)\).
+    \item Рассмотрим вспомогательную функцию \(\displaystyle g(x) = \frac{1}{M - f(x)}\), непрерывную на \({[a, b]}\).
+    \item По теореме 1 \(g(x)\) ограничена на \(\displaystyle {[a, b]} \implies \exists A > 0: \forall x \in {[a, b]} 0 < \left\vert g(x) \right\vert < A \implies f(x) < M - \frac{1}{A} \implies M - \frac{1}{A}\) --- верхняя грань \(f(x)\) на \({[a, b]}\).
+    \item Получено противоречие.     
+\end{enumerate}
+\noindent \underline{Следствие:} непрерывная на отрезке функция имеет на этом отрезке минимальное и максимальное значения.
+
+\section{Равномерная непрерывность функции}
+
+\begin{definition}
+    Говорят, что \(f: \mathbb{R} \to \mathbb{R}\) равномерно непрерывна на \(X \subseteq \mathbb{R}\), если 
+    \[
+        \forall \varepsilon > 0\ \exists \delta > 0: \forall x_1, x_2 \in X: \left\vert x_1 - x_2 \right\vert < \delta \implies \left\vert f(x_1) - f(x_2) \right\vert < \varepsilon
+    \]   
+\end{definition}
+
+\begin{claim}
+    Если функция равномерно непрерывна на \(X\), то она непрерывна на \(X\).  
+\end{claim}
+
+\begin{theorem}[Кантора]
+    \(f(x)\) непрерывна на \({[a, b]} \iff f(x)\) равномерно непрерывна на \({[a, b]}\).   
+\end{theorem}
+\noindent \underline{Доказательство.}
+\begin{enumerate}
+    \item Прелположим, что \(f(x)\) не является равномерно непрерывной на \(\displaystyle {[a, b]} \implies \exists \varepsilon > 0: \forall \delta > 0\ \exists x_1, x_2 \in {[a, b]}: \left\vert x_1 - x_2 \right\vert < \delta\), но \(\left\vert f(x_1) - f(x_2) \right\vert \geq \varepsilon\).
+    \item Возьмем \(\{\delta_n\} \to 0\ (\delta_n > 0)\). Согласно предположению \(\displaystyle \forall \delta_n\ \exists x^{\prime}_n, x^{\prime\prime}_n  \in {[a, b]}: \left\vert x^{\prime}_n  - x^{\prime\prime}_n  \right\vert < \delta_n\), но \(\left\vert f(x^{\prime}_n) - f(x^{\prime\prime}_n ) \right\vert \geq \varepsilon\).
+    \item По теореме Больцано-Вейерштрасса из \(\{x^{\prime}_n\}\) и \(\{x^{\prime\prime}_n\}\)  можно выделить сходящиеся к \(c \in {[a, b]}\)  подпоследовательности.
+    \item \(\displaystyle \left\{x^{\prime}_{k_n}\right\} \to f(c) \land \left\{x^{\prime\prime}_{k_n}\right\} \to f(c) \implies \left\vert f(x^{\prime}_{k_n}) - f(x^{\prime\prime}_{k_n})\right\vert \to 0\).
+    \item Получено противоречие. 
+\end{enumerate}
+
+\section{Локальные экстремумы. Поведение функции в точке}
+
+\begin{definition}
+    Пусть дана функция \(f: (a, b) \to \mathbb{R}\) и \(c \in (a, b)\). Говорят, что \(f(x)\) возрастает в точке \(c\), если
+    \[\exists U(c): f(x) > f(c)\ \text{при}\  x > c\ \text{и}\  f(x) < f(c)\ \text{при}\  x < c\]       
+\end{definition}
+
+\begin{theorem}[Достаточное условие возрастания]
+    \(f(x) \in D(c)\ \land\ f^{\prime}(c) > 0 \implies f(x)\) возрастает в \(c\).  
+\end{theorem}
+\noindent \underline{Доказательство.}
+\begin{enumerate}
+    \item Пусть \(\displaystyle \lim\limits_{x \to c} \frac{f(x) - f(c)}{x - c} > 0\)
+    \item Из 1 следует, что в этой \(\delta\)-окрестности \(c\) \(f(x) > f(c)\ \text{при}\  x > c\ \text{и}\  f(x) < f(c)\). 
+\end{enumerate}
+\noindent \textbf{Пример.} \(f(x) = x^3\). \(f^{\prime}(0) = 0\), но \(f(x)\) возрастает в точке \(0\).
+
+\begin{definition}
+    Пусть дана функция \(f: (a, b) \to \mathbb{R}\) и \(c \in (a, b)\). Говорят, что в точке \(c\) функция \(f(x)\) имеет локальный максимум, если
+    \[
+        \exists U(c): \forall x \in U(c)\ f(x) \leq f(c)
+    \] 
+\end{definition}
+
+\begin{lemma}[Ферма]
+    \(f(x) \in D(c)\ \land\) (\(c\) --- локальный экстремум) \(\implies f^{\prime}(c) = 0\).  
+\end{lemma}
+\noindent \underline{Доказательство.}
+\begin{enumerate}
+    \item Пусть \(f(x)\) имеет в точке \(c\) локальный максимум, то есть \(\exists U(c): \forall x \in U(c)\ f(x) \leq f(c)\).
+    \item Предположим, что \(f^{\prime}(c) > 0 \implies\) по теореме 4 \(f(x)\) возрастает в \(c \implies \exists U(c): f(x) > f(c)\) при \(x > c \implies\) получено противоречие.
+    \item Аналогично можно доказать, что \(f^{\prime}(c)\) не может быть меньше нуля.     
+\end{enumerate}
+\noindent \underline{Замечание 1:} условие равенства производной нуля --- необходимое, но не достаточное условие локального экстремума.\\
+\underline{Замечание 2:} теорема Ферма показывает, что касательная к графику функции в точке \(c\) параллельна \(OX\).\\[0.15cm]
+\textbf{Пример.} \(f(x) = x^3\). \(f^{\prime}(0) = 0\), но \(0\) не является точкой экстремума.\\
+
+\section{Теоремы Ролля, Лагранжа, Коши}
+
+\begin{theorem}[Ролля]
+    \(f(x) \in C({[a, b]})\ \land\ f(x) \in D((a, b))\ \land\ f(a) = f(b) \implies \exists c \in (a, b): f^{\prime}(c) = 0\). 
+\end{theorem}
+\noindent \underline{Доказательство.}
+\begin{enumerate}
+    \item \(f(x)\) непрерывна \({[a, b]} \implies \) по 2 теореме Вейерштрасса она имеет на \({[a, b]}\) максимальное и минимальное значение.
+    \item Положим \(\displaystyle M = \sup_{[a, b]}f(x),\ m = \inf_{[a, b]}f(x)\).
+    \item Если \(M = m\), то \(f(x) = const \implies f^{\prime}(x) = 0\).
+    \item Если \(M > m\), то хотя бы одно из значений функция принимает во внутренней точке \(c\) отрезка \({[a, b]} \implies f^{\prime}(c) = 0\) по теореме Ферма.
+\end{enumerate}
+\end{document}
