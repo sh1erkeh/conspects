@@ -81,6 +81,16 @@ $0
 endsnippet
 
 context math(context)
+snippet `(?<![\\a-zA-Z])(rel)` "\mu" A
+\mathcal{R} $0
+endsnippet
+
+context math(context)
+snippet `(?<![\\a-zA-Z])(RR)` "\mu" A
+\mathbb{R} $0
+endsnippet
+
+context math(context)
 snippet `(?<![\\a-zA-Z])(;m|mu)` "\mu" A
 \mu $0
 endsnippet
@@ -122,6 +132,12 @@ context math(context)
 snippet `(?<![\\a-zA-Z])(;d|delta)` "\delta" A
 \delta $0
 endsnippet
+
+context math(context)
+snippet `(?<![\\a-zA-Z])(;R)` "\delta" A
+\mathbb{R} $0
+endsnippet
+
 context math(context)
 snippet `(?<![\\a-zA-Z])(;D|Delta)` "\Delta" A
 \Delta $0
@@ -671,6 +687,11 @@ snippet lemma "lemma" A
 \end{lemma}
 endsnippet
 
-snippet ulm "underline" A
+snippet uln "underline" A
 \underline{$1}
+endsnippet
+
+context math(context)
+snippet lim "limit" A
+\lim\limits_{ \to }
 endsnippet
